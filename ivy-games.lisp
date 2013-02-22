@@ -48,23 +48,17 @@
         (:script :src "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
         ;; (:script :type "text/javascript" :src "/bs/js/bootstrap.min.js")
 
-        (:script :src "/js/jaws.js")
-        )
+        (:script :src "/js/jaws.js"))
        (:body
-        ,@body)))))
-
-(defmacro with-bs (&rest body)
-  `(htm (:div :class "container"
+        (:div :class "container"
               (:div :class "row"
-                    ,@body))))
+                    ,@body)))))))
 
 (defun game-index ()
   (with-page
-      (with-bs
-          (:div :class "span6"
-                (:ul
-                 (:li (:a :href "/tilemap" "Tile Map"))
-                 (:li (:a :href "/platform" "Platform")))))))
+      (:ul
+       (:li (:a :href "/tilemap" "Tile Map"))
+       (:li (:a :href "/platform" "Platform")))))
 
 
 (defpsmacro gebi (name)
@@ -74,20 +68,21 @@
   `(jaws.log ,message 1))
 
 
+
+(defmacro with-game (&rest body)
+  `(with-page
+       (:div :class "span12" :style "border: 1px solid #eee"
+             (:canvas :id "canvas" :width "1000" :height "640")
+             (:br)
+             (:span :id "fps")
+             (:span :id "jaws-log")
+             ,@body)))
+
 (defun platform ()
-  (with-page
-      (with-bs
-          (:div :class "span6"
-                (:canvas :id "canvas" :width "500" :height "320")
-                (:span :id "fps")
-                (:span :id "live_info")
-                (:script :src "/platform.js")))))
+  (with-game
+      (:script :src "/platform.js")))
 
 (defun tile-map ()
-  (with-page
-      (with-bs
-          (:div :class "span6"
-                (:canvas :id "canvas" :width "500" :height "320")
-                (:span :id "fps")
-                (:div :id "jaws-log")
-                (:script :src "/tilemap.js")))))
+  (with-game
+      (:script :src "/tilemap.js")))
+

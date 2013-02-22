@@ -1,4 +1,4 @@
-    function Example() {
+    function platform() {
       var player
       var blocks
       var fps
@@ -7,9 +7,9 @@
 
       /* Called once when a game state is activated. Use it for one-time setup code. */
       this.setup = function() {
-        live_info = document.getElementById("live_info")
+        live_info = document.getElementById("jaws-log")
         blocks = new jaws.SpriteList()
-        var world = new jaws.Rect(0,0,320*10,320*2)
+        var world = new jaws.Rect(0,0,3200,640)
         
         /* We create some 32x32 blocks and save them in array blocks */
         for(var y = 0; y < world.height; y += 32 ) {
@@ -20,9 +20,9 @@
           blocks.push( new Sprite({image: "block.bmp", x: x, y: world.height-32}) )
         }
         for(var x = 320; x < world.width; x += 32 ) {
-          blocks.push( new Sprite({image: "block.bmp", x: x, y: world.height-64}) )
+          blocks.push( new Sprite({image: "block.bmp", x: x, y: world.height-32}) )
         }
-        for(var i=0; i < 50; i++) {
+        for(var i=0; i < 100; i++) {
           blocks.push( new Sprite({image: "block.bmp", x: parseInt(Math.random()*100)*32, y: world.height - parseInt(Math.random()*10)*32}) ) 
         }
 
@@ -34,7 +34,7 @@
 
         viewport = new jaws.Viewport({max_x: world.width, max_y: world.height})
 
-        player = new jaws.Sprite({x:110, y:320, scale: 2, anchor: "center_bottom"})
+        player = new jaws.Sprite({x:110, y:320, scale: 1, anchor: "center_bottom"})
 
         player.move = function() {
           this.x += this.vx
@@ -60,6 +60,7 @@
         }
 
         var anim = new jaws.Animation({sprite_sheet: "droid_11x15.png", frame_size: [11,15], frame_duration: 100})
+
         player.anim_default = anim.slice(0,5)
         player.anim_up = anim.slice(6,8)
         player.anim_down = anim.slice(8,10)
@@ -69,7 +70,7 @@
         player.can_jump = true
 
         player.setImage( player.anim_default.next() )
-        jaws.context.mozImageSmoothingEnabled = false;  // non-blurry, blocky retro scaling
+        jaws.context.mozImageSmoothingEnabled = true;  // non-blurry, blocky retro scaling
         jaws.preventDefaultKeys(["up", "down", "left", "right", "space"])
       }
 
@@ -80,7 +81,7 @@
         player.vx = 0
         if(jaws.pressed("left"))  { player.vx = -2; player.setImage(player.anim_left.next()) }
         if(jaws.pressed("right")) { player.vx = 2;  player.setImage(player.anim_right.next()) }
-        if(jaws.pressed("up"))    { if(player.can_jump) { player.vy = -10; player.can_jump = false } }
+        if(jaws.pressed("up"))    { if(player.can_jump) { player.vy = -7; player.can_jump = false } }
 
         // some gravity
         player.vy += 0.4
@@ -112,5 +113,5 @@
     jaws.onload = function() {
       jaws.unpack()
       jaws.assets.add(["droid_11x15.png","block.bmp"])
-      jaws.start(Example)  // Our convenience function jaws.start() will load assets, call setup and loop update/draw in 60 FPS
+      jaws.start(platform)  // Our convenience function jaws.start() will load assets, call setup and loop update/draw in 60 FPS
     }

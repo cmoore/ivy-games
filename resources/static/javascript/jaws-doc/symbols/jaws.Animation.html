@@ -1,0 +1,892 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta name="generator" content="JsDoc Toolkit"></meta>
+		<title>jaws.Animation | JawsJS</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"></meta>
+		<meta name="mobileoptimized" content="0"></meta>
+	
+		<link rel="stylesheet" href="../css/all.css" media="all"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="only screen and (max-width: 660px)"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="handheld"></link>
+		<link rel="stylesheet" href="../css/screen.css" media="screen and (min-width: 661px)"></link>
+
+		<script src="../javascript/all.js"></script>
+		<!--[if lt IE 9]>
+			<script src="../javascript/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+<div class="index">
+	<div class="menu">
+		<div class="indexLinks">
+			<a href="../index.html">Classes</a>
+			<a href="../files.html">Files</a>
+		</div>
+	
+		<h2 class="heading1">Classes</h2>
+		
+		<input type="text" name="classFilter" class="classFilter" id="ClassFilter" placeholder="Filter"></input>
+		
+		<nav>
+			<ul class="classList" id="ClassList">
+				
+					<li><a href="../symbols/jaws.html">jaws</a></li>
+				
+					<li><a href="../symbols/jaws.Animation.html">jaws<span class='break'> </span>.<span class='break'> </span>Animation</a></li>
+				
+					<li><a href="../symbols/jaws.Assets.html">jaws<span class='break'> </span>.<span class='break'> </span>Assets</a></li>
+				
+					<li><a href="../symbols/jaws.GameLoop.html">jaws<span class='break'> </span>.<span class='break'> </span>GameLoop</a></li>
+				
+					<li><a href="../symbols/jaws.gfx.html">jaws<span class='break'> </span>.<span class='break'> </span>gfx</a></li>
+				
+					<li><a href="../symbols/jaws.Parallax.html">jaws<span class='break'> </span>.<span class='break'> </span>Parallax</a></li>
+				
+					<li><a href="../symbols/jaws.ParallaxLayer.html">jaws<span class='break'> </span>.<span class='break'> </span>ParallaxLayer</a></li>
+				
+					<li><a href="../symbols/jaws.Rect.html">jaws<span class='break'> </span>.<span class='break'> </span>Rect</a></li>
+				
+					<li><a href="../symbols/jaws.Sprite.html">jaws<span class='break'> </span>.<span class='break'> </span>Sprite</a></li>
+				
+					<li><a href="../symbols/jaws.SpriteList.html">jaws<span class='break'> </span>.<span class='break'> </span>SpriteList</a></li>
+				
+					<li><a href="../symbols/jaws.SpriteSheet.html">jaws<span class='break'> </span>.<span class='break'> </span>SpriteSheet</a></li>
+				
+					<li><a href="../symbols/jaws.TileMap.html">jaws<span class='break'> </span>.<span class='break'> </span>TileMap</a></li>
+				
+					<li><a href="../symbols/jaws.Viewport.html">jaws<span class='break'> </span>.<span class='break'> </span>Viewport</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="fineprint" style="clear:both">
+		
+		Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
+		Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
+		Generated on: 2013-0-19 21:22
+	</div>
+</div>
+
+<div class="index indexStatic"></div>
+
+<div class="content">
+	<div class="innerContent">
+		<h1 class="classTitle">
+			
+			Class <span>jaws.Animation</span>
+		</h1>
+		
+		<div class="intro">
+			<p class="description summary">
+				Manages an animation with a given list of frames. "Field Summary" contains options for the Animation()-constructor.
+			</p>
+				
+			
+				<ul class="summary">
+					
+					
+					
+						<li>Defined in: <a href="../symbols/src/src_animation.js.html">animation.js</a></li>
+					
+						
+				</ul>
+			
+		</div>
+		
+		
+			<div class="props">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class jaws.Animation.">
+					<caption class="sectionTitle">Class Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Constructor Attributes</th>
+							<th scope="col">Constructor Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription" >
+								<div class="fixedFont">
+									<b><a href="../symbols/jaws.Animation.html#constructor">jaws.Animation</a></b>(options)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		
+		
+		
+			
+			
+				<div class="props">
+					<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class jaws.Animation.">
+						<caption class="sectionTitle">Field Summary</caption>
+						
+						<thead>
+							<tr>
+								<th scope="col">Field Attributes</th>
+								<th scope="col">Field Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#bounce">bounce</a></b>
+										</div>
+										<div class="description">Rewind the animation frame by frame when end is reached</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#frame_direction">frame_direction</a></b>
+										</div>
+										<div class="description">-1 for backwards animation.</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#frame_duration">frame_duration</a></b>
+										</div>
+										<div class="description">How long should each frame be displayed</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#frame_size">frame_size</a></b>
+										</div>
+										<div class="description">Containing width/height, eg.</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#frames">frames</a></b>
+										</div>
+										<div class="description">Images/canvaselements</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#index">index</a></b>
+										</div>
+										<div class="description">Start on this frame</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#loop">loop</a></b>
+										</div>
+										<div class="description">Restart animation when end is reached</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#offset">offset</a></b>
+										</div>
+										<div class="description">When cutting out frames from a sprite sheet, start at this frame</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#on_end">on_end</a></b>
+										</div>
+										<div class="description">Function to call when animation ends.</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Animation.html#orientation">orientation</a></b>
+										</div>
+										<div class="description">How to cut out frames frmo sprite sheet, possible values are "down" or "right"</div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			
+			
+			
+		
+<!--
+#### METHODS SUMMARY
+-->
+		
+			
+			
+			<div class="props">
+				<h2 class="sectionTitle">Method Summary</h2>
+				
+				
+					<table class="summaryTable" id="MethodsList" cellspacing="0" summary="A summary of the methods documented in the class jaws.Animation.">
+						<thead>
+							<tr>
+								<th scope="col">Method Attributes</th>
+								<th scope="col">Method Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+							
+								<tr
+									 class='item0'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Animation.html#atFirstFrame">atFirstFrame</a></b>()
+										</div>
+										<div class="description">returns true if animation is at the very first frame</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item1'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Animation.html#atLastFrame">atLastFrame</a></b>()
+										</div>
+										<div class="description">returns true if animation is at the very last frame</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item2'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Animation.html#currentFrame">currentFrame</a></b>()
+										</div>
+										<div class="description">returns the current frame</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item3'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Animation.html#next">next</a></b>()
+										</div>
+										<div class="description">Moves animation forward by calling update() and then return the current frame</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item4'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Animation.html#slice">slice</a></b>(start, stop)
+										</div>
+										<div class="description">works like Array.slice but returns a new Animation-object with a subset of the frames</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item5'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Animation.html#toString">toString</a></b>()
+										</div>
+										<div class="description">Debugstring for Animation()-constructor</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item6'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Animation.html#update">update</a></b>()
+										</div>
+										<div class="description">Propells the animation forward by counting milliseconds and changing this.index accordingly
+ Supports looping and bouncing animations</div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				
+			
+				
+			</div>
+		
+		
+<!--
+#### EVENTS SUMMARY
+-->
+		
+<!--
+#### CONSTRUCTOR DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle" id="constructor">
+						Class Detail
+					</h2>
+					
+					<div class="fixedFont">
+						<b>jaws.Animation</b>(options)
+					</div>
+					
+					<div class="description">
+						
+						
+					</div>
+					
+					
+						
+							<pre class="code">// in setup()anim = new jaws.Animation({sprite_sheet: "droid_11x15.png", frame_size: [11,15], frame_duration: 100})player = new jaws.Sprite({y:300, anchor: "center_bottom"})// in update()player.setImage( anim.next() )// in draw()player.draw()</pre>
+						
+					
+				
+					
+						<dl class="detailList params">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									 <b>options</b>
+									
+								</dt>
+								<dd></dd>
+							
+						</dl>
+					
+					
+					
+				</div>
+			</div>
+		
+<!--
+#### FIELD DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Field Detail
+					</h2>
+					
+					
+						<div class="fixedFont heading" id="bounce">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{bool}</span>
+							
+							<b>bounce</b>							
+						</div>
+						
+						<div class="description">
+							Rewind the animation frame by frame when end is reached
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="frame_direction">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>frame_direction</b>							
+						</div>
+						
+						<div class="description">
+							-1 for backwards animation. 1 is default
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="frame_duration">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{milliseconds}</span>
+							
+							<b>frame_duration</b>							
+						</div>
+						
+						<div class="description">
+							How long should each frame be displayed
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="frame_size">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{array}</span>
+							
+							<b>frame_size</b>							
+						</div>
+						
+						<div class="description">
+							Containing width/height, eg. [32, 32]
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="frames">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{array}</span>
+							
+							<b>frames</b>							
+						</div>
+						
+						<div class="description">
+							Images/canvaselements
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="index">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>index</b>							
+						</div>
+						
+						<div class="description">
+							Start on this frame
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="loop">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{bool}</span>
+							
+							<b>loop</b>							
+						</div>
+						
+						<div class="description">
+							Restart animation when end is reached
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="offset">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>offset</b>							
+						</div>
+						
+						<div class="description">
+							When cutting out frames from a sprite sheet, start at this frame
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="on_end">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{function}</span>
+							
+							<b>on_end</b>							
+						</div>
+						
+						<div class="description">
+							Function to call when animation ends. triggers only on non-looping, non-bouncing animations
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="orientation">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{string}</span>
+							
+							<b>orientation</b>							
+						</div>
+						
+						<div class="description">
+							How to cut out frames frmo sprite sheet, possible values are "down" or "right"
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						
+					
+				</div>
+			</div>
+		
+<!--
+#### METHOD DETAILS
+-->		
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Method Detail
+					</h2>
+					
+					<ul class="methodDetail" id="MethodDetail">
+						
+						
+							<li 
+								 class='item0'
+							>
+								<div class="fixedFont heading" id="atFirstFrame">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>atFirstFrame</b>()
+								</div>
+								
+								<div class="description">
+									returns true if animation is at the very first frame
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item1'
+							>
+								<div class="fixedFont heading" id="atLastFrame">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>atLastFrame</b>()
+								</div>
+								
+								<div class="description">
+									returns true if animation is at the very last frame
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item2'
+							>
+								<div class="fixedFont heading" id="currentFrame">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>currentFrame</b>()
+								</div>
+								
+								<div class="description">
+									returns the current frame
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item3'
+							>
+								<div class="fixedFont heading" id="next">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>next</b>()
+								</div>
+								
+								<div class="description">
+									Moves animation forward by calling update() and then return the current frame
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item4'
+							>
+								<div class="fixedFont heading" id="slice">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>slice</b>(start, stop)
+								</div>
+								
+								<div class="description">
+									works like Array.slice but returns a new Animation-object with a subset of the frames
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>start</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>stop</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item5'
+							>
+								<div class="fixedFont heading" id="toString">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>toString</b>()
+								</div>
+								
+								<div class="description">
+									Debugstring for Animation()-constructor
+									
+									
+									
+									
+								</div>
+								
+								
+									
+										<pre class="code">var anim = new Animation(...)console.log(anim.toString())</pre>
+									
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item6'
+							>
+								<div class="fixedFont heading" id="update">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>update</b>()
+								</div>
+								
+								<div class="description">
+									Propells the animation forward by counting milliseconds and changing this.index accordingly
+ Supports looping and bouncing animations
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								
+							</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+		
+<!--
+#### EVENT DETAILS
+-->		
+		
+	</div>
+</div>
+		<script type="text/javascript">
+			wbos.CssTools.MediaQueryFallBack.LoadCss('../css/screen.css', '../css/handheld.css', 660)
+			codeview.classFilter.Init()
+		</script>
+	</body>
+</html>
+

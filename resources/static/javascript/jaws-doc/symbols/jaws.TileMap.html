@@ -1,0 +1,986 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta name="generator" content="JsDoc Toolkit"></meta>
+		<title>jaws.TileMap | JawsJS</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"></meta>
+		<meta name="mobileoptimized" content="0"></meta>
+	
+		<link rel="stylesheet" href="../css/all.css" media="all"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="only screen and (max-width: 660px)"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="handheld"></link>
+		<link rel="stylesheet" href="../css/screen.css" media="screen and (min-width: 661px)"></link>
+
+		<script src="../javascript/all.js"></script>
+		<!--[if lt IE 9]>
+			<script src="../javascript/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+<div class="index">
+	<div class="menu">
+		<div class="indexLinks">
+			<a href="../index.html">Classes</a>
+			<a href="../files.html">Files</a>
+		</div>
+	
+		<h2 class="heading1">Classes</h2>
+		
+		<input type="text" name="classFilter" class="classFilter" id="ClassFilter" placeholder="Filter"></input>
+		
+		<nav>
+			<ul class="classList" id="ClassList">
+				
+					<li><a href="../symbols/jaws.html">jaws</a></li>
+				
+					<li><a href="../symbols/jaws.Animation.html">jaws<span class='break'> </span>.<span class='break'> </span>Animation</a></li>
+				
+					<li><a href="../symbols/jaws.Assets.html">jaws<span class='break'> </span>.<span class='break'> </span>Assets</a></li>
+				
+					<li><a href="../symbols/jaws.GameLoop.html">jaws<span class='break'> </span>.<span class='break'> </span>GameLoop</a></li>
+				
+					<li><a href="../symbols/jaws.gfx.html">jaws<span class='break'> </span>.<span class='break'> </span>gfx</a></li>
+				
+					<li><a href="../symbols/jaws.Parallax.html">jaws<span class='break'> </span>.<span class='break'> </span>Parallax</a></li>
+				
+					<li><a href="../symbols/jaws.ParallaxLayer.html">jaws<span class='break'> </span>.<span class='break'> </span>ParallaxLayer</a></li>
+				
+					<li><a href="../symbols/jaws.Rect.html">jaws<span class='break'> </span>.<span class='break'> </span>Rect</a></li>
+				
+					<li><a href="../symbols/jaws.Sprite.html">jaws<span class='break'> </span>.<span class='break'> </span>Sprite</a></li>
+				
+					<li><a href="../symbols/jaws.SpriteList.html">jaws<span class='break'> </span>.<span class='break'> </span>SpriteList</a></li>
+				
+					<li><a href="../symbols/jaws.SpriteSheet.html">jaws<span class='break'> </span>.<span class='break'> </span>SpriteSheet</a></li>
+				
+					<li><a href="../symbols/jaws.TileMap.html">jaws<span class='break'> </span>.<span class='break'> </span>TileMap</a></li>
+				
+					<li><a href="../symbols/jaws.Viewport.html">jaws<span class='break'> </span>.<span class='break'> </span>Viewport</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="fineprint" style="clear:both">
+		
+		Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
+		Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
+		Generated on: 2013-0-19 21:22
+	</div>
+</div>
+
+<div class="index indexStatic"></div>
+
+<div class="content">
+	<div class="innerContent">
+		<h1 class="classTitle">
+			
+			Class <span>jaws.TileMap</span>
+		</h1>
+		
+		<div class="intro">
+			<p class="description summary">
+				Create and access tilebased 2D maps with very fast access of invidual tiles. "Field Summary" contains options for the TileMap()-constructor.
+			</p>
+				
+			
+				<ul class="summary">
+					
+					
+					
+						<li>Defined in: <a href="../symbols/src/src_tile_map.js.html">tile_map.js</a></li>
+					
+						
+				</ul>
+			
+		</div>
+		
+		
+			<div class="props">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class jaws.TileMap.">
+					<caption class="sectionTitle">Class Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Constructor Attributes</th>
+							<th scope="col">Constructor Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription" >
+								<div class="fixedFont">
+									<b><a href="../symbols/jaws.TileMap.html#constructor">jaws.TileMap</a></b>(options)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		
+		
+		
+			
+			
+				<div class="props">
+					<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class jaws.TileMap.">
+						<caption class="sectionTitle">Field Summary</caption>
+						
+						<thead>
+							<tr>
+								<th scope="col">Field Attributes</th>
+								<th scope="col">Field Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.TileMap.html#cell_size">cell_size</a></b>
+										</div>
+										<div class="description">Size of each cell in tilemap, defaults to [32,32]</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.TileMap.html#size">size</a></b>
+										</div>
+										<div class="description">Size of tilemap, defaults to [100,100]</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.TileMap.html#sortFunction">sortFunction</a></b>
+										</div>
+										<div class="description">Function used by sortCells() to sort cells, defaults to no sorting</div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			
+			
+			
+		
+<!--
+#### METHODS SUMMARY
+-->
+		
+			
+			
+			<div class="props">
+				<h2 class="sectionTitle">Method Summary</h2>
+				
+				
+					<table class="summaryTable" id="MethodsList" cellspacing="0" summary="A summary of the methods documented in the class jaws.TileMap.">
+						<thead>
+							<tr>
+								<th scope="col">Method Attributes</th>
+								<th scope="col">Method Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+							
+								<tr
+									 class='item0'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#all">all</a></b>()
+										</div>
+										<div class="description">Returns all objects in tile map</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item1'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#at">at</a></b>(x, y)
+										</div>
+										<div class="description">Get objects in cell that exists at coordinates x / y</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item2'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#atRect">atRect</a></b>(rect)
+										</div>
+										<div class="description">Returns occupants of all cells touched by 'rect'</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item3'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#cell">cell</a></b>(col, row)
+										</div>
+										<div class="description">Get objects in cell at col / row</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item4'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#clear">clear</a></b>()
+										</div>
+										<div class="description">Clear all cells in tile map</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item5'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#findPath">findPath</a></b>(start_position, end_position, inverted)
+										</div>
+										<div class="description">A-Star pathfinding Takes starting and ending x,y co-ordinates (from a mouse-click for example), which are then translated onto the TileMap grid.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item6'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#push">push</a></b>(obj)
+										</div>
+										<div class="description">Push obj (or array of objs) into our cell-grid.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item7'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#pushAsPoint">pushAsPoint</a></b>(obj)
+										</div>
+										<div class="description">Push objects into tilemap.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item8'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#pushAsRect">pushAsRect</a></b>(obj, rect)
+										</div>
+										<div class="description">push obj into cells touched by rect</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item9'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#pushToCell">pushToCell</a></b>(col, row, obj)
+										</div>
+										<div class="description">Push obj to a specific cell specified by col and row If cell is already occupied we create an array and push to that</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item10'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#sortCells">sortCells</a></b>(sortFunction)
+										</div>
+										<div class="description">Sort arrays in each cell in tile map according to sorter-function (see Array.sort)</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item11'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.TileMap.html#toString">toString</a></b>()
+										</div>
+										<div class="description">Debugstring for TileMap()</div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				
+			
+				
+			</div>
+		
+		
+<!--
+#### EVENTS SUMMARY
+-->
+		
+<!--
+#### CONSTRUCTOR DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle" id="constructor">
+						Class Detail
+					</h2>
+					
+					<div class="fixedFont">
+						<b>jaws.TileMap</b>(options)
+					</div>
+					
+					<div class="description">
+						
+						
+					</div>
+					
+					
+						
+							<pre class="code">var tile_map = new TileMap({size: [10, 10], cell_size: [16,16]})var sprite = new jaws.Sprite({x: 40, y: 40})var sprite2 = new jaws.Sprite({x: 41, y: 41})tile_map.push(sprite)tile_map.at(10,10)  // []tile_map.at(40,40)  // [sprite]tile_map.cell(0,0)  // []tile_map.cell(1,1)  // [sprite]</pre>
+						
+					
+				
+					
+						<dl class="detailList params">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									 <b>options</b>
+									
+								</dt>
+								<dd></dd>
+							
+						</dl>
+					
+					
+					
+				</div>
+			</div>
+		
+<!--
+#### FIELD DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Field Detail
+					</h2>
+					
+					
+						<div class="fixedFont heading" id="cell_size">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{array}</span>
+							
+							<b>cell_size</b>							
+						</div>
+						
+						<div class="description">
+							Size of each cell in tilemap, defaults to [32,32]
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="size">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{array}</span>
+							
+							<b>size</b>							
+						</div>
+						
+						<div class="description">
+							Size of tilemap, defaults to [100,100]
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="sortFunction">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{function}</span>
+							
+							<b>sortFunction</b>							
+						</div>
+						
+						<div class="description">
+							Function used by sortCells() to sort cells, defaults to no sorting
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						
+					
+				</div>
+			</div>
+		
+<!--
+#### METHOD DETAILS
+-->		
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Method Detail
+					</h2>
+					
+					<ul class="methodDetail" id="MethodDetail">
+						
+						
+							<li 
+								 class='item0'
+							>
+								<div class="fixedFont heading" id="all">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>all</b>()
+								</div>
+								
+								<div class="description">
+									Returns all objects in tile map
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item1'
+							>
+								<div class="fixedFont heading" id="at">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>at</b>(x, y)
+								</div>
+								
+								<div class="description">
+									Get objects in cell that exists at coordinates x / y
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>x</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>y</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item2'
+							>
+								<div class="fixedFont heading" id="atRect">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>atRect</b>(rect)
+								</div>
+								
+								<div class="description">
+									Returns occupants of all cells touched by 'rect'
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>rect</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item3'
+							>
+								<div class="fixedFont heading" id="cell">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>cell</b>(col, row)
+								</div>
+								
+								<div class="description">
+									Get objects in cell at col / row
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>col</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>row</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item4'
+							>
+								<div class="fixedFont heading" id="clear">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>clear</b>()
+								</div>
+								
+								<div class="description">
+									Clear all cells in tile map
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item5'
+							>
+								<div class="fixedFont heading" id="findPath">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>findPath</b>(start_position, end_position, inverted)
+								</div>
+								
+								<div class="description">
+									A-Star pathfinding Takes starting and ending x,y co-ordinates (from a mouse-click for example), which are then translated onto the TileMap grid.   Does not allow for Diagonal movements Uses a very simple Heuristic [see crowFlies()] for calculating node scores. Very lightly optimised for speed over memory usage. Returns a list of [col, row] pairs that define a valid path. Due to the simple Heuristic the path is not guaranteed to be the best path.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>start_position</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>end_position</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>inverted</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item6'
+							>
+								<div class="fixedFont heading" id="push">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>push</b>(obj)
+								</div>
+								
+								<div class="description">
+									Push obj (or array of objs) into our cell-grid.Tries to read obj.x and obj.y to calculate what cell to occopy
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>obj</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item7'
+							>
+								<div class="fixedFont heading" id="pushAsPoint">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>pushAsPoint</b>(obj)
+								</div>
+								
+								<div class="description">
+									Push objects into tilemap.Disregard height and width and only use x/y when calculating cell-position
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>obj</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item8'
+							>
+								<div class="fixedFont heading" id="pushAsRect">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>pushAsRect</b>(obj, rect)
+								</div>
+								
+								<div class="description">
+									push obj into cells touched by rect
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>obj</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>rect</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item9'
+							>
+								<div class="fixedFont heading" id="pushToCell">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>pushToCell</b>(col, row, obj)
+								</div>
+								
+								<div class="description">
+									Push obj to a specific cell specified by col and row If cell is already occupied we create an array and push to that
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>col</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>row</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>obj</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item10'
+							>
+								<div class="fixedFont heading" id="sortCells">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>sortCells</b>(sortFunction)
+								</div>
+								
+								<div class="description">
+									Sort arrays in each cell in tile map according to sorter-function (see Array.sort)
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>sortFunction</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item11'
+							>
+								<div class="fixedFont heading" id="toString">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>toString</b>()
+								</div>
+								
+								<div class="description">
+									Debugstring for TileMap()
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								
+							</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+		
+<!--
+#### EVENT DETAILS
+-->		
+		
+	</div>
+</div>
+		<script type="text/javascript">
+			wbos.CssTools.MediaQueryFallBack.LoadCss('../css/screen.css', '../css/handheld.css', 660)
+			codeview.classFilter.Init()
+		</script>
+	</body>
+</html>
+

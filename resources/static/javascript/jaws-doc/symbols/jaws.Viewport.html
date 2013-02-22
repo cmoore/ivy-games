@@ -1,0 +1,1317 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta name="generator" content="JsDoc Toolkit"></meta>
+		<title>jaws.Viewport | JawsJS</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"></meta>
+		<meta name="mobileoptimized" content="0"></meta>
+	
+		<link rel="stylesheet" href="../css/all.css" media="all"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="only screen and (max-width: 660px)"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="handheld"></link>
+		<link rel="stylesheet" href="../css/screen.css" media="screen and (min-width: 661px)"></link>
+
+		<script src="../javascript/all.js"></script>
+		<!--[if lt IE 9]>
+			<script src="../javascript/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+<div class="index">
+	<div class="menu">
+		<div class="indexLinks">
+			<a href="../index.html">Classes</a>
+			<a href="../files.html">Files</a>
+		</div>
+	
+		<h2 class="heading1">Classes</h2>
+		
+		<input type="text" name="classFilter" class="classFilter" id="ClassFilter" placeholder="Filter"></input>
+		
+		<nav>
+			<ul class="classList" id="ClassList">
+				
+					<li><a href="../symbols/jaws.html">jaws</a></li>
+				
+					<li><a href="../symbols/jaws.Animation.html">jaws<span class='break'> </span>.<span class='break'> </span>Animation</a></li>
+				
+					<li><a href="../symbols/jaws.Assets.html">jaws<span class='break'> </span>.<span class='break'> </span>Assets</a></li>
+				
+					<li><a href="../symbols/jaws.GameLoop.html">jaws<span class='break'> </span>.<span class='break'> </span>GameLoop</a></li>
+				
+					<li><a href="../symbols/jaws.gfx.html">jaws<span class='break'> </span>.<span class='break'> </span>gfx</a></li>
+				
+					<li><a href="../symbols/jaws.Parallax.html">jaws<span class='break'> </span>.<span class='break'> </span>Parallax</a></li>
+				
+					<li><a href="../symbols/jaws.ParallaxLayer.html">jaws<span class='break'> </span>.<span class='break'> </span>ParallaxLayer</a></li>
+				
+					<li><a href="../symbols/jaws.Rect.html">jaws<span class='break'> </span>.<span class='break'> </span>Rect</a></li>
+				
+					<li><a href="../symbols/jaws.Sprite.html">jaws<span class='break'> </span>.<span class='break'> </span>Sprite</a></li>
+				
+					<li><a href="../symbols/jaws.SpriteList.html">jaws<span class='break'> </span>.<span class='break'> </span>SpriteList</a></li>
+				
+					<li><a href="../symbols/jaws.SpriteSheet.html">jaws<span class='break'> </span>.<span class='break'> </span>SpriteSheet</a></li>
+				
+					<li><a href="../symbols/jaws.TileMap.html">jaws<span class='break'> </span>.<span class='break'> </span>TileMap</a></li>
+				
+					<li><a href="../symbols/jaws.Viewport.html">jaws<span class='break'> </span>.<span class='break'> </span>Viewport</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="fineprint" style="clear:both">
+		
+		Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
+		Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
+		Generated on: 2013-0-19 21:22
+	</div>
+</div>
+
+<div class="index indexStatic"></div>
+
+<div class="content">
+	<div class="innerContent">
+		<h1 class="classTitle">
+			
+			Class <span>jaws.Viewport</span>
+		</h1>
+		
+		<div class="intro">
+			<p class="description summary">
+				A window (Rect) into a bigger canvas/image. Viewport is always contained within that given image (called the game world). "Field Summary" contains options for the Viewport()-constructor.
+			</p>
+				
+			
+				<ul class="summary">
+					
+					
+					
+						<li>Defined in: <a href="../symbols/src/src_viewport.js.html">viewport.js</a></li>
+					
+						
+				</ul>
+			
+		</div>
+		
+		
+			<div class="props">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class jaws.Viewport.">
+					<caption class="sectionTitle">Class Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Constructor Attributes</th>
+							<th scope="col">Constructor Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription" >
+								<div class="fixedFont">
+									<b><a href="../symbols/jaws.Viewport.html#constructor">jaws.Viewport</a></b>(options)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		
+		
+		
+			
+			
+				<div class="props">
+					<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class jaws.Viewport.">
+						<caption class="sectionTitle">Field Summary</caption>
+						
+						<thead>
+							<tr>
+								<th scope="col">Field Attributes</th>
+								<th scope="col">Field Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Viewport.html#height">height</a></b>
+										</div>
+										<div class="description">Height of viewport, defaults to canvas height</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Viewport.html#max_x">max_x</a></b>
+										</div>
+										<div class="description">Maximum x-position for viewport, defaults to canvas width</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Viewport.html#max_y">max_y</a></b>
+										</div>
+										<div class="description">Maximum y-position for viewport, defaults to canvas height</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Viewport.html#width">width</a></b>
+										</div>
+										<div class="description">Width of viewport, defaults to canvas width</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Viewport.html#x">x</a></b>
+										</div>
+										<div class="description">X-position for the upper left corner of the viewport</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/jaws.Viewport.html#y">y</a></b>
+										</div>
+										<div class="description">Y-position for the upper left corner of the viewport</div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			
+			
+			
+		
+<!--
+#### METHODS SUMMARY
+-->
+		
+			
+			
+			<div class="props">
+				<h2 class="sectionTitle">Method Summary</h2>
+				
+				
+					<table class="summaryTable" id="MethodsList" cellspacing="0" summary="A summary of the methods documented in the class jaws.Viewport.">
+						<thead>
+							<tr>
+								<th scope="col">Method Attributes</th>
+								<th scope="col">Method Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+							
+								<tr
+									 class='item0'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#apply">apply</a></b>(func)
+										</div>
+										<div class="description">executes given draw-callback with a translated canvas which will draw items relative to the viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item1'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#centerAround">centerAround</a></b>(item)
+										</div>
+										<div class="description">center the viewport around item.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item2'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#draw">draw</a></b>(obj)
+										</div>
+										<div class="description">if obj is an array-like object, iterate through it and call draw() on each item if it's partly inside the viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item3'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#drawIfPartlyInside">drawIfPartlyInside</a></b>(item)
+										</div>
+										<div class="description">draws 'item' if it's partly inside the viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item4'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#drawTileMap">drawTileMap</a></b>(tile_map)
+										</div>
+										<div class="description">draws all items of 'tile_map' that's lies inside the viewport this is simular to viewport.draw( tile_map.all() ) but optmized for Huge game worlds (tile maps)</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item5'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#forceInside">forceInside</a></b>(item, buffer)
+										</div>
+										<div class="description">force 'item' inside the limits of the viewportusing 'buffer' as indicator how close to the 'item' is allowed to go</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item6'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#forceInsideVisibleArea">forceInsideVisibleArea</a></b>(item, buffer)
+										</div>
+										<div class="description">force 'item' inside current viewports visible areausing 'buffer' as indicator how close to the 'item' is allowed to go</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item7'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#isAbove">isAbove</a></b>(item)
+										</div>
+										<div class="description">Returns true of item is above viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item8'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#isBelow">isBelow</a></b>(item)
+										</div>
+										<div class="description">Returns true of item is above viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item9'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#isInside">isInside</a></b>(item)
+										</div>
+										<div class="description">Returns true if item is inside viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item10'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#isLeftOf">isLeftOf</a></b>(item)
+										</div>
+										<div class="description">Returns true of item is left of viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item11'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#isOutside">isOutside</a></b>(item)
+										</div>
+										<div class="description">Returns true if item is outside viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item12'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#isPartlyInside">isPartlyInside</a></b>(item)
+										</div>
+										<div class="description">Returns true if item is partly (down to 1 pixel) inside viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item13'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#isRightOf">isRightOf</a></b>(item)
+										</div>
+										<div class="description">Returns true of item is right of viewport</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item14'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#move">move</a></b>(x, y)
+										</div>
+										<div class="description">Move viewport x pixels horizontally and y pixels vertically</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item15'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.Viewport.html#moveTo">moveTo</a></b>(x, y)
+										</div>
+										<div class="description">Move viewport to given x/y</div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				
+			
+				
+			</div>
+		
+		
+<!--
+#### EVENTS SUMMARY
+-->
+		
+<!--
+#### CONSTRUCTOR DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle" id="constructor">
+						Class Detail
+					</h2>
+					
+					<div class="fixedFont">
+						<b>jaws.Viewport</b>(options)
+					</div>
+					
+					<div class="description">
+						
+						
+					</div>
+					
+					
+						
+							<pre class="code">// Center viewport around players position (player needs to have x/y attributes)// Usefull for sidescrollersviewport.centerAround(player)// Common viewport usage. max_x/max_y could be said to set the "game world size"viewport = viewport = new jaws.Viewport({max_x: 400, max_y: 3000})player = new jaws.Sprite({x:100, y:400})viewport.centerAround(player)// Draw player relative to the viewport. If viewport is way off, player won't even show up.viewport.apply( function() { player.draw()});</pre>
+						
+					
+				
+					
+						<dl class="detailList params">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									 <b>options</b>
+									
+								</dt>
+								<dd></dd>
+							
+						</dl>
+					
+					
+					
+				</div>
+			</div>
+		
+<!--
+#### FIELD DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Field Detail
+					</h2>
+					
+					
+						<div class="fixedFont heading" id="height">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>height</b>							
+						</div>
+						
+						<div class="description">
+							Height of viewport, defaults to canvas height
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="max_x">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>max_x</b>							
+						</div>
+						
+						<div class="description">
+							Maximum x-position for viewport, defaults to canvas width
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="max_y">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>max_y</b>							
+						</div>
+						
+						<div class="description">
+							Maximum y-position for viewport, defaults to canvas height
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="width">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>width</b>							
+						</div>
+						
+						<div class="description">
+							Width of viewport, defaults to canvas width
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="x">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>x</b>							
+						</div>
+						
+						<div class="description">
+							X-position for the upper left corner of the viewport
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="y">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{int}</span>
+							
+							<b>y</b>							
+						</div>
+						
+						<div class="description">
+							Y-position for the upper left corner of the viewport
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						
+					
+				</div>
+			</div>
+		
+<!--
+#### METHOD DETAILS
+-->		
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Method Detail
+					</h2>
+					
+					<ul class="methodDetail" id="MethodDetail">
+						
+						
+							<li 
+								 class='item0'
+							>
+								<div class="fixedFont heading" id="apply">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>apply</b>(func)
+								</div>
+								
+								<div class="description">
+									executes given draw-callback with a translated canvas which will draw items relative to the viewport
+									
+									
+									
+									
+								</div>
+								
+								
+									
+										<pre class="code">viewport.apply( function() {  player.draw();  foo.draw();});</pre>
+									
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>func</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item1'
+							>
+								<div class="fixedFont heading" id="centerAround">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>centerAround</b>(item)
+								</div>
+								
+								<div class="description">
+									center the viewport around item. item must respond to x and y for this to work. Usefull for sidescrollers when you wan't to keep the player in the center of the screen no matter how he moves.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item2'
+							>
+								<div class="fixedFont heading" id="draw">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>draw</b>(obj)
+								</div>
+								
+								<div class="description">
+									if obj is an array-like object, iterate through it and call draw() on each item if it's partly inside the viewport
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>obj</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item3'
+							>
+								<div class="fixedFont heading" id="drawIfPartlyInside">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>drawIfPartlyInside</b>(item)
+								</div>
+								
+								<div class="description">
+									draws 'item' if it's partly inside the viewport
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item4'
+							>
+								<div class="fixedFont heading" id="drawTileMap">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>drawTileMap</b>(tile_map)
+								</div>
+								
+								<div class="description">
+									draws all items of 'tile_map' that's lies inside the viewport this is simular to viewport.draw( tile_map.all() ) but optmized for Huge game worlds (tile maps)
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>tile_map</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item5'
+							>
+								<div class="fixedFont heading" id="forceInside">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>forceInside</b>(item, buffer)
+								</div>
+								
+								<div class="description">
+									force 'item' inside the limits of the viewportusing 'buffer' as indicator how close to the 'item' is allowed to go
+									
+									
+									
+									
+								</div>
+								
+								
+									
+										<pre class="code">viewport.forceInside(player, 10)</pre>
+									
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>buffer</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item6'
+							>
+								<div class="fixedFont heading" id="forceInsideVisibleArea">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>forceInsideVisibleArea</b>(item, buffer)
+								</div>
+								
+								<div class="description">
+									force 'item' inside current viewports visible areausing 'buffer' as indicator how close to the 'item' is allowed to go
+									
+									
+									
+									
+								</div>
+								
+								
+									
+										<pre class="code">viewport.move(10,0)                          // scroll forwardviewport.forceInsideVisibleArea(player, 20)  // make sure player doesn't get left behind</pre>
+									
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>buffer</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item7'
+							>
+								<div class="fixedFont heading" id="isAbove">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>isAbove</b>(item)
+								</div>
+								
+								<div class="description">
+									Returns true of item is above viewport
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item8'
+							>
+								<div class="fixedFont heading" id="isBelow">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>isBelow</b>(item)
+								</div>
+								
+								<div class="description">
+									Returns true of item is above viewport
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item9'
+							>
+								<div class="fixedFont heading" id="isInside">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>isInside</b>(item)
+								</div>
+								
+								<div class="description">
+									Returns true if item is inside viewport
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item10'
+							>
+								<div class="fixedFont heading" id="isLeftOf">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>isLeftOf</b>(item)
+								</div>
+								
+								<div class="description">
+									Returns true of item is left of viewport
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item11'
+							>
+								<div class="fixedFont heading" id="isOutside">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>isOutside</b>(item)
+								</div>
+								
+								<div class="description">
+									Returns true if item is outside viewport
+									
+									
+									
+									
+								</div>
+								
+								
+									
+										<pre class="code">if( viewport.isOutside(player)) player.die();// ... or the more advanced:bullets = new SpriteList()bullets.push( bullet )bullets.removeIf( viewport.isOutside )</pre>
+									
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item12'
+							>
+								<div class="fixedFont heading" id="isPartlyInside">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>isPartlyInside</b>(item)
+								</div>
+								
+								<div class="description">
+									Returns true if item is partly (down to 1 pixel) inside viewport
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item13'
+							>
+								<div class="fixedFont heading" id="isRightOf">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>isRightOf</b>(item)
+								</div>
+								
+								<div class="description">
+									Returns true of item is right of viewport
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>item</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item14'
+							>
+								<div class="fixedFont heading" id="move">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>move</b>(x, y)
+								</div>
+								
+								<div class="description">
+									Move viewport x pixels horizontally and y pixels vertically
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>x</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>y</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item15'
+							>
+								<div class="fixedFont heading" id="moveTo">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>moveTo</b>(x, y)
+								</div>
+								
+								<div class="description">
+									Move viewport to given x/y
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>x</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<b>y</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								
+							</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+		
+<!--
+#### EVENT DETAILS
+-->		
+		
+	</div>
+</div>
+		<script type="text/javascript">
+			wbos.CssTools.MediaQueryFallBack.LoadCss('../css/screen.css', '../css/handheld.css', 660)
+			codeview.classFilter.Init()
+		</script>
+	</body>
+</html>
+

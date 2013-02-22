@@ -1,0 +1,2136 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta name="generator" content="JsDoc Toolkit"></meta>
+		<title>jaws.SpriteList | JawsJS</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"></meta>
+		<meta name="mobileoptimized" content="0"></meta>
+	
+		<link rel="stylesheet" href="../css/all.css" media="all"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="only screen and (max-width: 660px)"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="handheld"></link>
+		<link rel="stylesheet" href="../css/screen.css" media="screen and (min-width: 661px)"></link>
+
+		<script src="../javascript/all.js"></script>
+		<!--[if lt IE 9]>
+			<script src="../javascript/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+<div class="index">
+	<div class="menu">
+		<div class="indexLinks">
+			<a href="../index.html">Classes</a>
+			<a href="../files.html">Files</a>
+		</div>
+	
+		<h2 class="heading1">Classes</h2>
+		
+		<input type="text" name="classFilter" class="classFilter" id="ClassFilter" placeholder="Filter"></input>
+		
+		<nav>
+			<ul class="classList" id="ClassList">
+				
+					<li><a href="../symbols/jaws.html">jaws</a></li>
+				
+					<li><a href="../symbols/jaws.Animation.html">jaws<span class='break'> </span>.<span class='break'> </span>Animation</a></li>
+				
+					<li><a href="../symbols/jaws.Assets.html">jaws<span class='break'> </span>.<span class='break'> </span>Assets</a></li>
+				
+					<li><a href="../symbols/jaws.GameLoop.html">jaws<span class='break'> </span>.<span class='break'> </span>GameLoop</a></li>
+				
+					<li><a href="../symbols/jaws.gfx.html">jaws<span class='break'> </span>.<span class='break'> </span>gfx</a></li>
+				
+					<li><a href="../symbols/jaws.Parallax.html">jaws<span class='break'> </span>.<span class='break'> </span>Parallax</a></li>
+				
+					<li><a href="../symbols/jaws.ParallaxLayer.html">jaws<span class='break'> </span>.<span class='break'> </span>ParallaxLayer</a></li>
+				
+					<li><a href="../symbols/jaws.Rect.html">jaws<span class='break'> </span>.<span class='break'> </span>Rect</a></li>
+				
+					<li><a href="../symbols/jaws.Sprite.html">jaws<span class='break'> </span>.<span class='break'> </span>Sprite</a></li>
+				
+					<li><a href="../symbols/jaws.SpriteList.html">jaws<span class='break'> </span>.<span class='break'> </span>SpriteList</a></li>
+				
+					<li><a href="../symbols/jaws.SpriteSheet.html">jaws<span class='break'> </span>.<span class='break'> </span>SpriteSheet</a></li>
+				
+					<li><a href="../symbols/jaws.TileMap.html">jaws<span class='break'> </span>.<span class='break'> </span>TileMap</a></li>
+				
+					<li><a href="../symbols/jaws.Viewport.html">jaws<span class='break'> </span>.<span class='break'> </span>Viewport</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="fineprint" style="clear:both">
+		
+		Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
+		Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
+		Generated on: 2013-0-19 21:22
+	</div>
+</div>
+
+<div class="index indexStatic"></div>
+
+<div class="content">
+	<div class="innerContent">
+		<h1 class="classTitle">
+			
+			Class <span>jaws.SpriteList</span>
+		</h1>
+		
+		<div class="intro">
+			<p class="description summary">
+				Manages all your Sprites in lists. Makes easy mass-draw() / update() possible among others. Implements Array API. "Field Summary" contains options for the SpriteList()-constructor.Sprites (your bullets, aliens, enemies, players etc) will need to beupdated, draw, deleted. Often in various orders and based on different conditions.This is where SpriteList() comes in:
+			</p>
+				
+			
+				<ul class="summary">
+					
+					
+					
+						<li>Defined in: <a href="../symbols/src/src_sprite_list.js.html">sprite_list.js</a></li>
+					
+						
+				</ul>
+			
+		</div>
+		
+		
+			<div class="props">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class jaws.SpriteList.">
+					<caption class="sectionTitle">Class Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Constructor Attributes</th>
+							<th scope="col">Constructor Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription" >
+								<div class="fixedFont">
+									<b><a href="../symbols/jaws.SpriteList.html#constructor">jaws.SpriteList</a></b>(options)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		
+		
+		
+<!--
+#### METHODS SUMMARY
+-->
+		
+			
+			
+			<div class="props">
+				<h2 class="sectionTitle">Method Summary</h2>
+				
+				
+					<table class="summaryTable" id="MethodsList" cellspacing="0" summary="A summary of the methods documented in the class jaws.SpriteList.">
+						<thead>
+							<tr>
+								<th scope="col">Method Attributes</th>
+								<th scope="col">Method Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+							
+								<tr
+									 class='item0'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#at">at</a></b>(index)
+										</div>
+										<div class="description">Return the sprite at the specified index.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item1'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#concat">concat</a></b>()
+										</div>
+										<div class="description">Concatenate this sprite list and another array.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item2'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#deleteIf">deleteIf</a></b>(condition)
+										</div>
+										<div class="description">Delete sprites in spritelist where condition(sprite) returns true.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item3'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#draw">draw</a></b>()
+										</div>
+										<div class="description">Invoke draw() on each element of the sprite list</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item4'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#drawIf">drawIf</a></b>(condition)
+										</div>
+										<div class="description">Draw sprites in spritelist where condition(sprite) returns true</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item5'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#every">every</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item6'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#filter">filter</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item7'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#forEach">forEach</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item8'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#indexOf">indexOf</a></b>(searchElement, fromIndex)
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item9'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#isSpriteList">isSpriteList</a></b>()
+										</div>
+										<div class="description">Returns true if this object is a sprite lsit.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item10'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#join">join</a></b>(separator)
+										</div>
+										<div class="description">Joins the contents of the sprite list into a string.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item11'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#lastIndexOf">lastIndexOf</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item12'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#load">load</a></b>(objects)
+										</div>
+										<div class="description">Load sprites into sprite list.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item13'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#map">map</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item14'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#pop">pop</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item15'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#push">push</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item16'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#reduce">reduce</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item17'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#reduceRight">reduceRight</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item18'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#remove">remove</a></b>(obj)
+										</div>
+										<div class="description">Removes the first occurrence of obj from list</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item19'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#removeIf">removeIf</a></b>(condition)
+										</div>
+										<div class="description">Remove sprites in spritelist where condition(sprite) returns true</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item20'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#reverse">reverse</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item21'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#shift">shift</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item22'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#slice">slice</a></b>(start, end)
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item23'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#some">some</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item24'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#sort">sort</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item25'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#splice">splice</a></b>()
+										</div>
+										<div class="description">Add or remove sprites from the list.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item26'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#unshift">unshift</a></b>()
+										</div>
+										<div class="description">Add one or more sprites to the front of the list</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item27'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#update">update</a></b>()
+										</div>
+										<div class="description">Call update() on all sprites in spritelist</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item28'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#updateIf">updateIf</a></b>(condition)
+										</div>
+										<div class="description">Call update() on sprites in spritelist where condition(sprite) returns true</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item29'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#updateLength">updateLength</a></b>()
+										</div>
+										<div class="description">Update the length of the sprite list.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item30'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/jaws.SpriteList.html#valueOf">valueOf</a></b>()
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				
+			
+				
+			</div>
+		
+		
+<!--
+#### EVENTS SUMMARY
+-->
+		
+<!--
+#### CONSTRUCTOR DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle" id="constructor">
+						Class Detail
+					</h2>
+					
+					<div class="fixedFont">
+						<b>jaws.SpriteList</b>(options)
+					</div>
+					
+					<div class="description">
+						
+						
+					</div>
+					
+					
+						
+							<pre class="code">// create 100 enemies var enemies = new SpriteList()for(i=0; i < 100; i++) {   enemies.push(new Sprite({image: "enemy.png", x: i, y: 200}))}enemies.draw()                    // calls draw() on all enemiesenemies.update()                  // calls update() on all enemies enemies.removeIf(isOutsideCanvas) // removes each item in enemies that returns true when isOutsideCanvas(item) is calledenemies.drawIf(isInsideViewport)  // only call draw() on items that returns true when isInsideViewport is called with item as argument</pre>
+						
+					
+				
+					
+						<dl class="detailList params">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span>  <b>options</b>
+									<i>Optional</i>
+								</dt>
+								<dd>Currently used to pass in a literal list of sprites. See SpriteList#load for details</dd>
+							
+						</dl>
+					
+					
+					
+				</div>
+			</div>
+		
+<!--
+#### FIELD DETAILS
+-->
+		
+<!--
+#### METHOD DETAILS
+-->		
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Method Detail
+					</h2>
+					
+					<ul class="methodDetail" id="MethodDetail">
+						
+						
+							<li 
+								 class='item0'
+							>
+								<div class="fixedFont heading" id="at">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Object}</span>
+									
+									<b>at</b>(index)
+								</div>
+								
+								<div class="description">
+									Return the sprite at the specified index.Replaces the array [] notation.So:my_sprite_list.at(1) is equivalent to my_array[1]
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{Number}</span> <b>index</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Object}</span> Sprite at index</dd>
+											
+										
+										
+										
+										
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item1'
+							>
+								<div class="fixedFont heading" id="concat">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Object}</span>
+									
+									<b>concat</b>()
+								</div>
+								
+								<div class="description">
+									Concatenate this sprite list and another array. Does not modify original.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Object}</span> A new SpriteList comprised of this one joined with other lists.</dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/concat</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item2'
+							>
+								<div class="fixedFont heading" id="deleteIf">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>deleteIf</b>(condition)
+								</div>
+								
+								<div class="description">
+									Delete sprites in spritelist where condition(sprite) returns true.Alias for removeIf()
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>condition</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item3'
+							>
+								<div class="fixedFont heading" id="draw">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>draw</b>()
+								</div>
+								
+								<div class="description">
+									Invoke draw() on each element of the sprite list
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item4'
+							>
+								<div class="fixedFont heading" id="drawIf">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>drawIf</b>(condition)
+								</div>
+								
+								<div class="description">
+									Draw sprites in spritelist where condition(sprite) returns true
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>condition</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item5'
+							>
+								<div class="fixedFont heading" id="every">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Boolean}</span>
+									
+									<b>every</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Boolean}</span> </dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item6'
+							>
+								<div class="fixedFont heading" id="filter">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>filter</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Array}</span> </dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/filter</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item7'
+							>
+								<div class="fixedFont heading" id="forEach">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>forEach</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item8'
+							>
+								<div class="fixedFont heading" id="indexOf">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Number}</span>
+									
+									<b>indexOf</b>(searchElement, fromIndex)
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{Object}</span> <b>searchElement</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Number}</span> <b>fromIndex</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Number}</span> </dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item9'
+							>
+								<div class="fixedFont heading" id="isSpriteList">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Boolean}</span>
+									
+									<b>isSpriteList</b>()
+								</div>
+								
+								<div class="description">
+									Returns true if this object is a sprite lsit.Used to tell SpriteLists and Arrays apart
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Boolean}</span> </dd>
+											
+										
+										
+										
+										
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item10'
+							>
+								<div class="fixedFont heading" id="join">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>join</b>(separator)
+								</div>
+								
+								<div class="description">
+									Joins the contents of the sprite list into a string.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>separator</b>
+												<i>Optional</i>
+											</dt>
+											<dd>String to separate each array element. If ommitted, defaults to comma.</dd>
+										
+									</dl>
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/joinImplemented mostly for an easy verbose way to display the sprites inside the sprite list.</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item11'
+							>
+								<div class="fixedFont heading" id="lastIndexOf">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>lastIndexOf</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item12'
+							>
+								<div class="fixedFont heading" id="load">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>load</b>(objects)
+								</div>
+								
+								<div class="description">
+									Load sprites into sprite list.Argument could either be- an array of Sprite objects- an array of JSON objects- a JSON.stringified string representing an array of JSON objects
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>objects</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item13'
+							>
+								<div class="fixedFont heading" id="map">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>map</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Array}</span> </dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/map</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item14'
+							>
+								<div class="fixedFont heading" id="pop">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Object}</span>
+									
+									<b>pop</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Object}</span> Last sprite in the list</dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/pop</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item15'
+							>
+								<div class="fixedFont heading" id="push">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Number}</span>
+									
+									<b>push</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Number}</span> New length of the sprite list</dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/push</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item16'
+							>
+								<div class="fixedFont heading" id="reduce">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Object|Number|String}</span>
+									
+									<b>reduce</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Object|Number|String}</span> </dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/Reduce</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item17'
+							>
+								<div class="fixedFont heading" id="reduceRight">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Object|Number|String}</span>
+									
+									<b>reduceRight</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Object|Number|String}</span> </dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/ReduceRight</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item18'
+							>
+								<div class="fixedFont heading" id="remove">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>remove</b>(obj)
+								</div>
+								
+								<div class="description">
+									Removes the first occurrence of obj from list
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>obj</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item19'
+							>
+								<div class="fixedFont heading" id="removeIf">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>removeIf</b>(condition)
+								</div>
+								
+								<div class="description">
+									Remove sprites in spritelist where condition(sprite) returns true
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>condition</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item20'
+							>
+								<div class="fixedFont heading" id="reverse">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>reverse</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reverse</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item21'
+							>
+								<div class="fixedFont heading" id="shift">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Object}</span>
+									
+									<b>shift</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Object}</span> First sprite in the list</dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/shift</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item22'
+							>
+								<div class="fixedFont heading" id="slice">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Object}</span>
+									
+									<b>slice</b>(start, end)
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{Number}</span> <b>start</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Number}</span> <b>end</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Object}</span> A new array containing sprites (a section of the sprites array defined by start and end)</dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/slice</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item23'
+							>
+								<div class="fixedFont heading" id="some">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Boolean}</span>
+									
+									<b>some</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Boolean}</span> </dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item24'
+							>
+								<div class="fixedFont heading" id="sort">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>sort</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/sort</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item25'
+							>
+								<div class="fixedFont heading" id="splice">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Array}</span>
+									
+									<b>splice</b>()
+								</div>
+								
+								<div class="description">
+									Add or remove sprites from the list.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Array}</span> Array containing removed sprites</dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/splice</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item26'
+							>
+								<div class="fixedFont heading" id="unshift">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{Number}</span>
+									
+									<b>unshift</b>()
+								</div>
+								
+								<div class="description">
+									Add one or more sprites to the front of the list
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{Number}</span> New length of the sprite list</dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/unshift</dd>
+											
+										
+									
+									</dl>
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item27'
+							>
+								<div class="fixedFont heading" id="update">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>update</b>()
+								</div>
+								
+								<div class="description">
+									Call update() on all sprites in spritelist
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item28'
+							>
+								<div class="fixedFont heading" id="updateIf">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>updateIf</b>(condition)
+								</div>
+								
+								<div class="description">
+									Call update() on sprites in spritelist where condition(sprite) returns true
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<b>condition</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item29'
+							>
+								<div class="fixedFont heading" id="updateLength">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>updateLength</b>()
+								</div>
+								
+								<div class="description">
+									Update the length of the sprite list.Since we're delegating array operations to sprites array, this is not done automatically
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item30'
+							>
+								<div class="fixedFont heading" id="valueOf">
+									<span class='lighter'>
+									
+									</span>
+									
+									<span class="light">{String}</span>
+									
+									<b>valueOf</b>()
+								</div>
+								
+								<div class="description">
+									
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+									<dl class="detailList nomargin">
+									
+										
+										
+										
+										
+										
+										
+										
+											<dt class="heading">Returns:</dt>
+											
+												<dd><span class="light fixedFont">{String}</span> Literal string representation (currently, just the value of toString() )</dd>
+											
+										
+										
+										
+										
+										
+											<dt class="heading">See:</dt>
+											
+												<dd>https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/ValueOf</dd>
+											
+										
+									
+									</dl>
+								
+								
+							</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+		
+<!--
+#### EVENT DETAILS
+-->		
+		
+	</div>
+</div>
+		<script type="text/javascript">
+			wbos.CssTools.MediaQueryFallBack.LoadCss('../css/screen.css', '../css/handheld.css', 660)
+			codeview.classFilter.Init()
+		</script>
+	</body>
+</html>
+

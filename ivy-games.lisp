@@ -17,9 +17,8 @@
        (create-regex-dispatcher "^/local-css$" 'site-css)
        (create-regex-dispatcher "^/tilemap$" 'tile-map)
        (create-regex-dispatcher "^/platform$" 'platform)
+       (create-regex-dispatcher "^/platform2$" 'platform2)
        (create-regex-dispatcher "^/$" 'game-index)))
-
-
 
 (defun site-css ()
   (setf (hunchentoot:content-type*) "text/css")
@@ -60,22 +59,19 @@
        (:li (:a :href "/tilemap" "Tile Map"))
        (:li (:a :href "/platform" "Platform")))))
 
-
 (defpsmacro gebi (name)
   `(document.get-Element-By-Id ,name))
 
 (defpsmacro jlog (message)
   `(jaws.log ,message 1))
 
-
-
 (defmacro with-game (&rest body)
   `(with-page
-       (:div :class "span12" :style "border: 1px solid #eee"
-             (:canvas :id "canvas" :width "1000" :height "640")
+       (:div :class "span12"
+             (:canvas :id "canvas" :width "640" :height "480")
              (:br)
-             (:span :id "fps")
-             (:span :id "jaws-log")
+             (:div :id "fps")
+             (:div :id "jaws-log")
              ,@body)))
 
 (defun platform ()
@@ -85,4 +81,147 @@
 (defun tile-map ()
   (with-game
       (:script :src "/tilemap.js")))
+
+
+(defun platform2 ()
+  (with-game
+      (:script
+       (str (ps
+              (defvar player)
+              (defvar blocks)
+              (defvar fps)
+              (defvar viewport)
+              (defvar tile_map)
+              (defvar world)
+              (defvar show_stats)
+
+              (setf platform (create
+
+                              setup (lambda ()
+                                      (setf live_info (gebi "fps"))
+
+                                      (setf blocks (new (jaws.-sprite-list)))
+                                      (setf world (new (jaws.-rect 0 0 3200 640)))
+                                      
+                                      (do ((i 0 (+ i 32)))
+                                          ((> i world.height) 'done)
+                                        (blocks.push (new-sprite :x 0 :y i))
+                                        (blocks.push (new-sprite :x (- world.width 32) :y i)))
+
+                                      (do ((i 0 (+ i 32)))
+                                          ((> i world.width))
+                                        (blocks.push (new-sprite :x i :y (- world.height 32))))
+
+                                      (setf tile_map (new (jaws.-tile-map (create size (array 1000 1000)
+                                                                                  cell_size (array 32 32)))))
+                                      (tile_map.push blocks)
+
+                                      (setf viewport (new (jaws.-viewport (create max_x world.width
+                                                                                  max_y world.height))))
+                                      (setf player (new (jaws.-sprite (create x 128
+                                                                              y 128
+                                                                              scale 1.5
+                                                                              anchor "center_bottom"))))
+                                      (setf player.move (lambda ()
+                                                          (+= this.x this.vx)
+                                                          (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
+                                                              (-= this.x this.vx))
+                                                          (setf this.vx 0)
+
+                                                          (+= this.y this.vy)
+                                                          (defvar block (aref (tile_map.at-rect (player.rect)) 0))
+                                                          (if block
+                                                              (progn
+                                                                (if (> this.vy 0)
+                                                                    (progn
+                                                                      (setf this.can_jump true)
+                                                                      (setf this.y (- (@ (block.rect) y) 1))))
+                                                                (if (< this.vy 0)
+                                                                    (setf this.y (+ (@ (block.rect) bottom) this.height)))
+                                                                (setf this.vy 0)))))
+                                      
+                                      (defvar anim (new (jaws.-animation (create sprite_sheet "droid_11x15.png"
+                                                                                 frame_size (array 11 15)
+                                                                                 frame_duration 100))))
+                                      (setf player.anim_default (anim.slice 0 5))
+                                      (setf player.anim_up (anim.slice 6 8))
+                                      (setf player.anim_down (anim.slice 8 10))
+                                      (setf player.anim_left (anim.slice 10 12))
+                                      (setf player.anim_right (anim.slice 12 14))
+                                      (setf player.vx 0)
+                                      (setf player.vy 0)
+                                      (setf player.can_jump true)
+
+                                      (player.set-image (player.anim_default.next))
+                                      (setf player.y 64)
+                                      (setf jaws.context.moz-image-smooting-enabled true)
+                                      (setf jaws.prevent-default-keys (array "up" "down" "left" "right" "space")))
+
+                              update (lambda ()
+                                       (setf show_stats 1)
+
+
+                                       (when (jaws.pressed "left")
+                                         (setf player.vx (- 2))
+                                         (player.set-image (player.anim_left.next)))
+
+                                       (when (jaws.pressed "right")
+                                         (setf player.vx 2)
+                                         (player.set-image (player.anim_right.next)))
+
+                                       (when (jaws.pressed "up")
+                                         (when player.can_jump
+                                           (setf player.vy (- 7.5))
+                                           (setf player.can_jump false)))
+                                       
+                                       ;; movement
+                                       (+= player.vy 0.4)
+                                       (player.move)
+
+                                       (viewport.center-around player)
+                                       (and show_stats
+                                            (setf live_info.inner-h-t-m-l (concatenate 'string jaws.game_loop.fps
+                                                                                       "fps. P: "
+                                                                                       (parse-int player.x)
+                                                                                       "/"
+                                                                                       (parse-int player.y)
+                                                                                       "  PV "
+                                                                                       (parse-int player.vx)
+                                                                                       "/"
+                                                                                       (parse-int player.vy)
+                                                                                       "  Viewport: "
+                                                                                       (parse-int viewport.x)
+                                                                                       "/"
+                                                                                       (parse-int viewport.y)
+                                                                                       " World: "
+                                                                                       (parse-int world.width)
+                                                                                       "/"
+                                                                                       (parse-int world.height)))))
+
+                              draw (lambda ()
+                                     (jaws.clear)
+                                     (viewport.apply (lambda ()
+                                                       (blocks.draw)
+                                                       (player.draw))))))
+
+              (with-document-ready (lambda ()
+                                     (jaws.assets.add (array "droid_11x15.png"
+                                                             "block.bmp"))
+                                     (jaws.start platform))))))))
+
+
+(defpsmacro new-sprite (&key (x 0) (y 0) (image "block.bmp"))
+  `(new (jaws.-sprite (create image ,image
+                              x ,x
+                              y ,y))))
+(defpsmacro with-document-ready (&rest body)
+  `((@ ($ document) ready) ,@body))
+(defpsmacro -= (a b)
+  `(setf ,a (- ,a ,b)))
+(defpsmacro += (a b)
+  `(setf ,a (+ ,a ,b)))
+
+(ps (do ((i 0 (+ i 32)))
+        ((> i world.height))
+      (+ i 12)))
 

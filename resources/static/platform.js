@@ -23,7 +23,10 @@
                 blocks.push( new Sprite({image: "block.bmp", x: x, y: world.height-32}) )
             }
             for(var i=0; i < 100; i++) {
-                blocks.push( new Sprite({image: "block.bmp", x: parseInt(Math.random()*100)*32, y: world.height - parseInt(Math.random()*10)*32}))
+                blocks.push( new Sprite({
+                    image: "block.bmp",
+                    x: parseInt(Math.random()*100)*32,
+                    y: world.height - parseInt(Math.random()*10)*32}))
             }
             
             // A tile map, each cell is 32x32 pixels. There's 100 such cells across and 100 downwards.

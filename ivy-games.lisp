@@ -112,6 +112,11 @@
                                           ((> i world.width))
                                         (blocks.push (new-sprite :x i :y (- world.height 32))))
 
+                                      (dotimes (i 100)
+                                        (let ((rx (* 32 (parse-int (* 100 (-math.random)))))
+                                              (ry (- world.height (* 32 (parse-int (* 10 (-math.random)))))))
+                                          (blocks.push (new-sprite :x rx :y ry))))
+
                                       (setf tile_map (new (jaws.-tile-map (create size (array 1000 1000)
                                                                                   cell_size (array 32 32)))))
                                       (tile_map.push blocks)
@@ -122,23 +127,24 @@
                                                                               y 128
                                                                               scale 1.5
                                                                               anchor "center_bottom"))))
-                                      (setf player.move (lambda ()
-                                                          (+= this.x this.vx)
-                                                          (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
-                                                              (-= this.x this.vx))
-                                                          (setf this.vx 0)
-
-                                                          (+= this.y this.vy)
-                                                          (defvar block (aref (tile_map.at-rect (player.rect)) 0))
-                                                          (if block
-                                                              (progn
-                                                                (if (> this.vy 0)
-                                                                    (progn
-                                                                      (setf this.can_jump true)
-                                                                      (setf this.y (- (@ (block.rect) y) 1))))
-                                                                (if (< this.vy 0)
-                                                                    (setf this.y (+ (@ (block.rect) bottom) this.height)))
-                                                                (setf this.vy 0)))))
+                                      (setf player.move
+                                            (lambda ()
+                                              (+= this.x this.vx)
+                                              (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
+                                                  (-= this.x this.vx))
+                                              (setf this.vx 0)
+                                              
+                                              (+= this.y this.vy)
+                                              (defvar block (aref (tile_map.at-rect (player.rect)) 0))
+                                              (if block
+                                                  (progn
+                                                    (if (> this.vy 0)
+                                                        (progn
+                                                          (setf this.can_jump true)
+                                                          (setf this.y (- (@ (block.rect) y) 1))))
+                                                    (if (< this.vy 0)
+                                                        (setf this.y (+ (@ (block.rect) bottom) this.height)))
+                                                    (setf this.vy 0)))))
                                       
                                       (defvar anim (new (jaws.-animation (create sprite_sheet "droid_11x15.png"
                                                                                  frame_size (array 11 15)
@@ -154,7 +160,7 @@
 
                                       (player.set-image (player.anim_default.next))
                                       (setf player.y 64)
-                                      (setf jaws.context.moz-image-smooting-enabled true)
+                                      (setf jaws.context.moz-image-smoothing-enabled true)
                                       (setf jaws.prevent-default-keys (array "up" "down" "left" "right" "space")))
 
                               update (lambda ()

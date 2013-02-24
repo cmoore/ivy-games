@@ -117,9 +117,8 @@
                                               (ry (- world.height (* 32 (parse-int (* 10 (-math.random)))))))
                                           (blocks.push (new-sprite :x rx :y ry))))
 
-                                      (setf tile_map (new (jaws.-tile-map (create size (array 1000 1000)
+                                      (defvar tile_map (new (jaws.-tile-map (create size (array 1000 1000)
                                                                                   cell_size (array 32 32)))))
-                                      (tile_map.push blocks)
 
                                       (setf viewport (new (jaws.-viewport (create max_x world.width
                                                                                   max_y world.height))))
@@ -149,6 +148,23 @@
                                       (defvar anim (new (jaws.-animation (create sprite_sheet "droid_11x15.png"
                                                                                  frame_size (array 11 15)
                                                                                  frame_duration 100))))
+                                      
+                                      
+
+                                      
+                                      (let ((the-sprite (new (jaws.-sprite (create :x 64
+                                                                                   :y (- world.height 128)))))
+                                            (the-anim (new (jaws.-animation
+                                                             (create sprite_sheet "/blocks/pickups.png"
+                                                                     frame_size (array 1 1)
+                                                                     frame_duration 100)))))
+                                        
+                                        (setf     the-sprite.set-image (the-anim.slice 3 6))
+                                        (blocks.push the-sprite))
+
+                                      (tile_map.push blocks)
+
+
                                       (setf player.anim_default (anim.slice 0 5))
                                       (setf player.anim_up (anim.slice 6 8))
                                       (setf player.anim_down (anim.slice 8 10))
@@ -212,6 +228,7 @@
 
               (with-document-ready (lambda ()
                                      (jaws.assets.add (array "droid_11x15.png"
+                                                             "/blocks/pickups.png"
                                                              "block.bmp"))
                                      (jaws.start platform))))))))
 

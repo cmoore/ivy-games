@@ -53,11 +53,30 @@
               (:div :class "row"
                     ,@body)))))))
 
+
+
+(defpsmacro new-sprite (&key (x 0) (y 0) (image "block.bmp"))
+  `(new (jaws.-sprite (create image ,image
+                              x ,x
+                              y ,y))))
+(defpsmacro with-document-ready (&rest body)
+  `((@ ($ document) ready) ,@body))
+(defpsmacro -= (a b)
+  `(setf ,a (- ,a ,b)))
+(defpsmacro += (a b)
+  `(setf ,a (+ ,a ,b)))
+
+(ps (do ((i 0 (+ i 32)))
+        ((> i world.height))
+      (+ i 12)))
+
+
 (defun game-index ()
   (with-page
       (:ul
        (:li (:a :href "/tilemap" "Tile Map"))
-       (:li (:a :href "/platform" "Platform")))))
+       (:li (:a :href "/platform" "Platform"))
+       (:li (:a :href "/platform2" "Platform2")))))
 
 (defpsmacro gebi (name)
   `(document.get-Element-By-Id ,name))
@@ -94,14 +113,20 @@
               (defvar tile_map)
               (defvar world)
               (defvar show_stats)
+              (defvar powerups)
 
               (setf platform (create
 
+                              random-tiles (lambda ()
+                                             (dotimes (i 100)
+                                               (let ((rx (* 32 (parse-int (* 100 (-math.random)))))
+                                                     (ry (- world.height (* 32 (parse-int (* 10 (-math.random)))))))
+                                                 (blocks.push (new-sprite :x rx :y ry)))))
                               setup (lambda ()
                                       (setf live_info (gebi "fps"))
 
                                       (setf blocks (new (jaws.-sprite-list)))
-                                      (setf world (new (jaws.-rect 0 0 3200 640)))
+                                      (setf world (new (jaws.-rect 0 0 3200 384)))
                                       
                                       (do ((i 0 (+ i 32)))
                                           ((> i world.height) 'done)
@@ -112,14 +137,20 @@
                                           ((> i world.width))
                                         (blocks.push (new-sprite :x i :y (- world.height 32))))
 
-                                      (dotimes (i 100)
-                                        (let ((rx (* 32 (parse-int (* 100 (-math.random)))))
-                                              (ry (- world.height (* 32 (parse-int (* 10 (-math.random)))))))
-                                          (blocks.push (new-sprite :x rx :y ry))))
+                                 
 
-                                      (defvar tile_map (new (jaws.-tile-map (create size (array 1000 1000)
+                                      (setf tile_map (new (jaws.-tile-map (create size (array 1000 1000)
                                                                                   cell_size (array 32 32)))))
 
+                                      (let ((the-anim (new (jaws.-animation (create sprite_sheet "/blocks/pickups.png"
+                                                                                    frame_size (array 3 18)))))
+                                            (the-powerup (new (jaws.-sprite :x 64 :y 64))))
+                                        ;(setf the-powerup.anim_default (the-anim.slice 2 2))
+                                        (the-powerup.set-image (the-anim.slice 2 2))
+                                        (blocks.push the-powerup))
+
+
+                                      (platform.set-powerup)
                                       (setf viewport (new (jaws.-viewport (create max_x world.width
                                                                                   max_y world.height))))
                                       (setf player (new (jaws.-sprite (create x 128
@@ -148,20 +179,6 @@
                                       (defvar anim (new (jaws.-animation (create sprite_sheet "droid_11x15.png"
                                                                                  frame_size (array 11 15)
                                                                                  frame_duration 100))))
-                                      
-                                      
-
-                                      
-                                      (let ((the-sprite (new (jaws.-sprite (create :x 64
-                                                                                   :y (- world.height 128)))))
-                                            (the-anim (new (jaws.-animation
-                                                             (create sprite_sheet "/blocks/pickups.png"
-                                                                     frame_size (array 1 1)
-                                                                     frame_duration 100)))))
-                                        
-                                        (setf     the-sprite.set-image (the-anim.slice 3 6))
-                                        (blocks.push the-sprite))
-
                                       (tile_map.push blocks)
 
 
@@ -181,7 +198,6 @@
 
                               update (lambda ()
                                        (setf show_stats 1)
-
 
                                        (when (jaws.pressed "left")
                                          (setf player.vx (- 2))
@@ -231,20 +247,3 @@
                                                              "/blocks/pickups.png"
                                                              "block.bmp"))
                                      (jaws.start platform))))))))
-
-
-(defpsmacro new-sprite (&key (x 0) (y 0) (image "block.bmp"))
-  `(new (jaws.-sprite (create image ,image
-                              x ,x
-                              y ,y))))
-(defpsmacro with-document-ready (&rest body)
-  `((@ ($ document) ready) ,@body))
-(defpsmacro -= (a b)
-  `(setf ,a (- ,a ,b)))
-(defpsmacro += (a b)
-  `(setf ,a (+ ,a ,b)))
-
-(ps (do ((i 0 (+ i 32)))
-        ((> i world.height))
-      (+ i 12)))
-

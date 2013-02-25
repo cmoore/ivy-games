@@ -25,6 +25,23 @@
   (css-lite:css
    (("body") (:font-family "Open Sans"))))
 
+(defpsmacro new-sprite (&key (x 0) (y 0) (image "grass-dirt.png") (anchor "bottom_center") (flipped false))
+  `(new (jaws.-sprite (create image ,image
+                              x ,x
+                              y ,y
+                              flipped ,flipped
+                              anchor ,anchor))))
+(defpsmacro with-document-ready (&rest body)
+  `((@ ($ document) ready) ,@body))
+(defpsmacro -= (a b)
+  `(setf ,a (- ,a ,b)))
+(defpsmacro += (a b)
+  `(setf ,a (+ ,a ,b)))
+(defpsmacro gebi (name)
+  `(document.get-Element-By-Id ,name))
+(defpsmacro jlog (message)
+  `(jaws.log ,message 1))
+
 (defmacro with-page (&rest body)
   `(cl-who:with-html-output-to-string
        (*standard-output* nil :prologue t :indent nil)
@@ -36,7 +53,7 @@
 
         (:link :rel "stylesheet" :href "/bs/css/bootstrap.css")
         (:link :rel "stylesheet" :href "/bs/css/bootstrap-responsive.css")
-         (:link :type "text/css" :rel "stylesheet" :href "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600|Merriweather:400,300,700")
+        ;(:link :type "text/css" :rel "stylesheet" :href "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600|Merriweather:400,300,700")
         (:link :rel "stylesheet" :href "/local-css")
 
         ;; (:link :rel "shortcut icon" :href "/favicon.ico")
@@ -53,37 +70,6 @@
               (:div :class "row" :style "margin-top: 10px;"
                     ,@body)))))))
 
-
-
-(defpsmacro new-sprite (&key (x 0) (y 0) (image "grass-dirt.png") (anchor "bottom_center") (flipped false))
-  `(new (jaws.-sprite (create image ,image
-                              x ,x
-                              y ,y
-                              flipped ,flipped
-                              anchor ,anchor))))
-
-
-(defpsmacro with-document-ready (&rest body)
-  `((@ ($ document) ready) ,@body))
-(defpsmacro -= (a b)
-  `(setf ,a (- ,a ,b)))
-(defpsmacro += (a b)
-  `(setf ,a (+ ,a ,b)))
-
-
-(defun game-index ()
-  (with-page
-      (:ul
-       (:li (:a :href "/tilemap" "Tile Map"))
-       (:li (:a :href "/platform" "Platform"))
-       (:li (:a :href "/platform2" "Platform2")))))
-
-(defpsmacro gebi (name)
-  `(document.get-Element-By-Id ,name))
-
-(defpsmacro jlog (message)
-  `(jaws.log ,message 1))
-
 (defmacro with-game (&rest body)
   `(with-page
        (:div :class "span12"
@@ -93,6 +79,13 @@
              (:div :id "jaws-log")
              ,@body)))
 
+(defun game-index ()
+  (with-page
+      (:ul
+       (:li (:a :href "/tilemap" "Tile Map"))
+       (:li (:a :href "/platform" "Platform"))
+       (:li (:a :href "/platform2" "Platform2")))))
+
 (defun platform ()
   (with-game
       (:script :src "/platform.js")))
@@ -100,7 +93,6 @@
 (defun tile-map ()
   (with-game
       (:script :src "/tilemap.js")))
-
 
 (defun platform2 ()
   (with-game
@@ -122,15 +114,16 @@
               (defvar blocks-sheet)
               (defvar pickups-sheet)
 
-              (setf platform (create
-                              
-                              random-tiles (lambda ()
+              (setf platform
+                    (create
+                     
+                     random-tiles (lambda ()
                                              (dotimes (i 100)
                                                (let ((rx (* texture-size (parse-int (* 100 (-math.random)))))
                                                      (ry (- world.height (* texture-size (parse-int (* 10 (-math.random)))))))
                                                  (blocks.push (new-sprite :x rx :y ry)))))
-
-                              setup (lambda ()
+                     
+                     setup (lambda ()
                                       (setf live_info (gebi "fps"))
 
                                       
@@ -156,16 +149,17 @@
                                        (new-sprite :image "cherries.png"
                                                    :x 32
                                                    :y (- world.height (* 2 texture-size))))
+                                      
 
-                                      (blocks.push
-                                       (new-sprite :image "daisy.png"
-                                                   :x 384 :y (- world.height 124)))
+                                      (let ((daisy-s (new-sprite :image "daisy.png"
+                                                                 :x 384 :y (- world.height 124))))
+                                        ((@ (daisy-s.rect) draw))
+                                        (blocks.push daisy-s))
 
                                       (setf daisy (new-sprite :image "the-hero-small.png"
                                                               :x 756
                                                               :anchor "bottom_center"
                                                               :y (- world.height 124)))
-                                      (blocks.push daisy)
 
                                       (setf roo (new-sprite :image "roo.png"
                                                             :x 512
@@ -174,7 +168,7 @@
                                                             :y (- world.height 124)))
                                       (setf roo.vx 0)
                                       (setf roo.vy 0)
-                                      ((@ (roo.rect) draw))
+;                                      ((@ (roo.rect) draw))
                                       (setf roo.move (lambda ()
                                                        (unless (<= world.width roo.x)
                                                          (+= roo.x roo.vx))))
@@ -237,8 +231,8 @@
                                       (setf player.y 64)
                                       (setf jaws.context.moz-image-smoothing-enabled true)
                                       (setf jaws.prevent-default-keys (array "up" "down" "left" "right" "space")))
-
-                              update (lambda ()
+                     
+                     update (lambda ()
                                        (setf show_stats 1)
 
                                        (when (jaws.pressed "left")
@@ -288,13 +282,17 @@
                                                                                        roo.vx
                                                                                        "/"
                                                                                        roo.vy))))
-
-                              draw (lambda ()
-                                     (jaws.clear)
-                                     (viewport.apply (lambda ()
-                                                       (blocks.draw)
-                                                       (roo.draw)
-                                                       (player.draw))))))
+                     
+                     draw (lambda ()
+                            (jaws.clear)
+                            (viewport.apply (lambda ()
+                                              (blocks.draw)
+                                              (daisy.draw)
+                                              ((@ (daisy.rect) draw))
+                                              (roo.draw)
+                                              ((@ (roo.rect) draw))
+                                              (player.draw)
+                                              ((@ (player.rect) draw)))))))
 
               (with-document-ready (lambda ()
                                      (jaws.assets.add (array "droid_big.png"

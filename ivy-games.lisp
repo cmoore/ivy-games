@@ -50,25 +50,25 @@
         (:script :src "/js/jaws.js"))
        (:body
         (:div :class "container"
-              (:div :class "row"
+              (:div :class "row" :style "margin-top: 10px;"
                     ,@body)))))))
 
 
 
-(defpsmacro new-sprite (&key (x 0) (y 0) (image "block.bmp"))
+(defpsmacro new-sprite (&key (x 0) (y 0) (image "grass-dirt.png") (anchor "bottom_center") (flipped false))
   `(new (jaws.-sprite (create image ,image
                               x ,x
-                              y ,y))))
+                              y ,y
+                              flipped ,flipped
+                              anchor ,anchor))))
+
+
 (defpsmacro with-document-ready (&rest body)
   `((@ ($ document) ready) ,@body))
 (defpsmacro -= (a b)
   `(setf ,a (- ,a ,b)))
 (defpsmacro += (a b)
   `(setf ,a (+ ,a ,b)))
-
-(ps (do ((i 0 (+ i 32)))
-        ((> i world.height))
-      (+ i 12)))
 
 
 (defun game-index ()
@@ -87,7 +87,7 @@
 (defmacro with-game (&rest body)
   `(with-page
        (:div :class "span12"
-             (:canvas :id "canvas" :width "640" :height "480")
+             (:canvas :id "canvas" :width "1000" :height "640")
              (:br)
              (:div :id "fps")
              (:div :id "jaws-log")
@@ -107,6 +107,7 @@
       (:script
        (str (ps
               (defvar player)
+              (defvar dog)
               (defvar blocks)
               (defvar fps)
               (defvar viewport)
@@ -114,49 +115,90 @@
               (defvar world)
               (defvar show_stats)
               (defvar powerups)
+              (defvar texture-size 64)
+
+              (defvar roo)
+              (defvar daisy)
+              (defvar blocks-sheet)
+              (defvar pickups-sheet)
 
               (setf platform (create
-
+                              
                               random-tiles (lambda ()
                                              (dotimes (i 100)
-                                               (let ((rx (* 32 (parse-int (* 100 (-math.random)))))
-                                                     (ry (- world.height (* 32 (parse-int (* 10 (-math.random)))))))
+                                               (let ((rx (* texture-size (parse-int (* 100 (-math.random)))))
+                                                     (ry (- world.height (* texture-size (parse-int (* 10 (-math.random)))))))
                                                  (blocks.push (new-sprite :x rx :y ry)))))
+
                               setup (lambda ()
                                       (setf live_info (gebi "fps"))
 
-                                      (setf blocks (new (jaws.-sprite-list)))
-                                      (setf world (new (jaws.-rect 0 0 3200 384)))
                                       
-                                      (do ((i 0 (+ i 32)))
-                                          ((> i world.height) 'done)
-                                        (blocks.push (new-sprite :x 0 :y i))
-                                        (blocks.push (new-sprite :x (- world.width 32) :y i)))
+                                      (setf blocks (new (jaws.-sprite-list)))
+                                      (setf world (new (jaws.-rect 0 0 3200 640)))
 
-                                      (do ((i 0 (+ i 32)))
+                                      (setf blocks-sheet (new (jaws.-sprite-sheet
+                                                               (create image "/blocks/blocks1.png"
+                                                                       frame_size (array 32 32)
+                                                                       scale_image 2))))
+
+                                      (setf pickups-sheet (new (jaws.-sprite-sheet
+                                                                (create image "/blocks/pickups.png"
+                                                                        frame_size (array 35 43)
+                                                                        ;scale_image 2
+                                                                        orientation "right"))))
+
+                                      (let ((the-block (new-sprite :x 256 :y (- world.height (* 2 texture-size)))))
+                                        (the-block.set-image (aref pickups-sheet.frames 3))
+                                        (blocks.push the-block))
+
+                                      (blocks.push
+                                       (new-sprite :image "cherries.png"
+                                                   :x 32
+                                                   :y (- world.height (* 2 texture-size))))
+
+                                      (blocks.push
+                                       (new-sprite :image "daisy.png"
+                                                   :x 384 :y (- world.height 124)))
+
+                                      (setf daisy (new-sprite :image "the-hero-small.png"
+                                                              :x 756
+                                                              :anchor "bottom_center"
+                                                              :y (- world.height 124)))
+                                      (blocks.push daisy)
+
+                                      (setf roo (new-sprite :image "roo.png"
+                                                            :x 512
+                                                            :anchor "bottom_center"
+                                                            :flipped true
+                                                            :y (- world.height 124)))
+                                      (setf roo.vx 0)
+                                      (setf roo.vy 0)
+                                      ((@ (roo.rect) draw))
+                                      (setf roo.move (lambda ()
+                                                       (unless (<= world.width roo.x)
+                                                         (+= roo.x roo.vx))))
+                                      
+                                      (do ((i 0 (+ i texture-size)))
                                           ((> i world.width))
-                                        (blocks.push (new-sprite :x i :y (- world.height 32))))
+                                        (blocks.push (new-sprite :x i :y (- world.height texture-size))))
 
-                                 
+                                      (let ((misc-thing (new-sprite :x 0 :y (- world.height 256))))
+                                        (misc-thing.set-image (aref blocks-sheet 0))
+                                        (blocks.push misc-thing))
+                                      
+                                      (setf tile_map (new (jaws.-tile-map
+                                                           (create size (array 1000 1000)
+                                                                   cell_size (array texture-size texture-size)))))
 
-                                      (setf tile_map (new (jaws.-tile-map (create size (array 1000 1000)
-                                                                                  cell_size (array 32 32)))))
-
-                                      (let ((the-anim (new (jaws.-animation (create sprite_sheet "/blocks/pickups.png"
-                                                                                    frame_size (array 3 18)))))
-                                            (the-powerup (new (jaws.-sprite :x 64 :y 64))))
-                                        ;(setf the-powerup.anim_default (the-anim.slice 2 2))
-                                        (the-powerup.set-image (the-anim.slice 2 2))
-                                        (blocks.push the-powerup))
-
-
-                                      (platform.set-powerup)
                                       (setf viewport (new (jaws.-viewport (create max_x world.width
                                                                                   max_y world.height))))
+
                                       (setf player (new (jaws.-sprite (create x 128
                                                                               y 128
-                                                                              scale 1.5
+                                                                              ;scale 1.5
                                                                               anchor "center_bottom"))))
+                                                                            
                                       (setf player.move
                                             (lambda ()
                                               (+= this.x this.vx)
@@ -176,12 +218,12 @@
                                                         (setf this.y (+ (@ (block.rect) bottom) this.height)))
                                                     (setf this.vy 0)))))
                                       
-                                      (defvar anim (new (jaws.-animation (create sprite_sheet "droid_11x15.png"
-                                                                                 frame_size (array 11 15)
+                                      (defvar anim (new (jaws.-animation (create sprite_sheet "droid_big.png"
+                                                                                 frame_size (array 22 30)
                                                                                  frame_duration 100))))
+
                                       (tile_map.push blocks)
-
-
+                                    
                                       (setf player.anim_default (anim.slice 0 5))
                                       (setf player.anim_up (anim.slice 6 8))
                                       (setf player.anim_down (anim.slice 8 10))
@@ -215,6 +257,9 @@
                                        ;; movement
                                        (+= player.vy 0.4)
                                        (player.move)
+                                       ;(roo.move)
+
+                                       (setf roo.vx 2)
 
                                        (viewport.center-around player)
                                        (and show_stats
@@ -234,16 +279,34 @@
                                                                                        " World: "
                                                                                        (parse-int world.width)
                                                                                        "/"
-                                                                                       (parse-int world.height)))))
+                                                                                       (parse-int world.height)
+                                                                                       "  Roo: "
+                                                                                       roo.x
+                                                                                       "/"
+                                                                                       roo.y
+                                                                                       " <> "
+                                                                                       roo.vx
+                                                                                       "/"
+                                                                                       roo.vy))))
 
                               draw (lambda ()
                                      (jaws.clear)
                                      (viewport.apply (lambda ()
                                                        (blocks.draw)
+                                                       (roo.draw)
                                                        (player.draw))))))
 
               (with-document-ready (lambda ()
-                                     (jaws.assets.add (array "droid_11x15.png"
+                                     (jaws.assets.add (array "droid_big.png"
+                                                             "the-hero-small.png"
+                                                             "/blocks/blocks1.png"
                                                              "/blocks/pickups.png"
-                                                             "block.bmp"))
+                                                             "daisy.png"
+                                                             "cherries.png"
+                                                             "roo.png"
+                                                             "dog-anim.png"
+                                                             "grass-dirt.png"))
+
                                      (jaws.start platform))))))))
+
+

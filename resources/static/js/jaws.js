@@ -677,8 +677,13 @@ jaws.Assets = function Assets() {
   }
 
   this.getPostfix = function(src) {
-    postfix_regexp = /\.([a-zA-Z0-9]+)/;
-    return postfix_regexp.exec(src)[1]
+      postfix_regexp = /\.([a-zA-Z0-9]+)/;
+      lx = postfix_regexp.exec(src);
+      if (lx) {
+          return lx[1];
+      } else {
+          return "none";
+      }
   }
 
   this.getType = function(src) {
@@ -2893,3 +2898,4 @@ var jaws = (function(jaws) {
   return jaws;
 })(jaws || {});
 ;window.addEventListener("load", function() { if(jaws.onload) jaws.onload(); }, false);
+

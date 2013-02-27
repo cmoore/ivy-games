@@ -135,11 +135,29 @@
                                        (add-powerup :x (+ 30 (* 32 i)) :frame i)))
 
                      random-tiles (lambda ()
-                                             (dotimes (i 100)
-                                               (let ((rx (* texture-size (parse-int (* 100 (-math.random)))))
-                                                     (ry (- world.height (* texture-size (parse-int (* 10 (-math.random)))))))
-                                                 (blocks.push (new-sprite :x rx :y ry)))))
+                                    (dotimes (i 100)
+                                      (let ((rx (* texture-size (parse-int (* 100 (-math.random)))))
+                                            (ry (- world.height (* texture-size (parse-int (* 10 (-math.random)))))))
+                                        (blocks.push (new-sprite :x rx :y ry)))))
                      
+                     player-move (lambda ()
+                                   (+= player.x player.vx)
+                                   (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
+                                       (-= player.x player.vx))
+                                   (setf player.vx 0)
+                                   
+                                   (+= player.y player.vy)
+                                   (defvar block (aref (tile_map.at-rect (player.rect)) 0))
+                                   (if block
+                                       (progn
+                                         (if (> player.vy 0)
+                                             (progn
+                                               (setf player.can_jump true)
+                                               (setf player.y (- (@ (block.rect) y) 1))))
+                                         (if (< player.vy 0)
+                                             (setf player.y (+ (@ (block.rect) bottom) player.height)))
+                                         (setf player.vy 0))))
+
                      setup (lambda ()
                              (setf live_info (gebi "fps"))
                                      
@@ -156,15 +174,10 @@
                              (setf pickups-sheet (new (jaws.-sprite-sheet
                                                        (create image "/blocks/pickups.png"
                                                                frame_size (array 34 42)
-                                                               ;scale_image 2
+                                        ;scale_image 2
                                                                orientation "right"))))
 
-                             
-                             ; the ground
-                             (do ((i 0 (+ i texture-size)))
-                                 ((> i world.width))
-                               (blocks.push (new-sprite :x i :y (- world.height texture-size))))
-                             
+
                              (setf tile_map (new (jaws.-tile-map
                                                   (create size (array 1000 1000)
                                                           cell_size (array texture-size texture-size)))))
@@ -175,95 +188,76 @@
                              (setf player (new (jaws.-sprite (create x 128
                                                                      y 128
                                                                      anchor "center_bottom"))))
-                                                                            
-                             (setf player.move
-                                   (lambda ()
-                                     (+= this.x this.vx)
-                                     (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
-                                         (-= this.x this.vx))
-                                     (setf this.vx 0)
-                                     
-                                     (+= this.y this.vy)
-                                     (defvar block (aref (tile_map.at-rect (player.rect)) 0))
-                                     (if block
-                                         (progn
-                                           (if (> this.vy 0)
-                                               (progn
-                                                 (setf this.can_jump true)
-                                                 (setf this.y (- (@ (block.rect) y) 1))))
-                                           (if (< this.vy 0)
-                                               (setf this.y (+ (@ (block.rect) bottom) this.height)))
-                                           (setf this.vy 0)))))
-                                      
-                             (defvar anim (new (jaws.-animation (create sprite_sheet "droid_big.png"
-                                                                        frame_size (array 22 30)
-                                                                        frame_duration 100))))
 
-                             (platform.drop-powerups)
+                                        ; draw the ground
+                             (do ((i 0 (+ i texture-size)))
+                                 ((> i world.width))
+                               (blocks.push (new-sprite :x i :y (- world.height texture-size))))
+                             
+                                        ; draw roo
+                             (blocks.push (new-sprite :x 256 :y (- world.height (* 2 texture-size))
+                                                      :image "roo.png"))
+
                              (tile_map.push blocks)
                              
-                             (setf player.anim_default (anim.slice 0 5))
-                             (setf player.anim_up (anim.slice 6 8))
-                             (setf player.anim_down (anim.slice 8 10))
-                             (setf player.anim_left (anim.slice 10 12))
-                             (setf player.anim_right (anim.slice 12 14))
                              (setf player.vx 0)
                              (setf player.vy 0)
                              (setf player.can_jump true)
 
-                             (player.set-image (player.anim_default.next))
+                             (player.set-image "daisy.png")
                              (setf player.y 64)
                              (setf jaws.context.moz-image-smoothing-enabled true)
                              (setf jaws.prevent-default-keys (array "up" "down" "left" "right" "space")))
                      
                      update (lambda ()
-                                       (setf show_stats 1)
+                              (setf show_stats 1)
+                              (when (jaws.pressed "left")
+                                (unless player.flipped
+                                  (player.flip))
+                                (setf player.vx (- 2)))
+                              
+                              (when (jaws.pressed "right")
+                                (when player.flipped
+                                  (player.flip))
+                                (setf player.vx 2))
 
-                                       (when (jaws.pressed "left")
-                                         (setf player.vx (- 2))
-                                         (player.set-image (player.anim_left.next)))
-
-                                       (when (jaws.pressed "right")
-                                         (setf player.vx 2)
-                                         (player.set-image (player.anim_right.next)))
-
-                                       (when (jaws.pressed "up")
-                                         (when player.can_jump
-                                           (setf player.vy (- 7.5))
-                                           (setf player.can_jump false)))
+                              (when (jaws.pressed "up")
+                                (when player.can_jump
+                                  (setf player.vy (- 7.5))
+                                  (setf player.can_jump false)))
                                        
-                                       ;; movement
-                                       (+= player.vy 0.4)
-                                       (player.move)
+                              ;; movement
+                              (+= player.vy 0.4)
+                              (platform.player-move)
 
-
-                                       (viewport.center-around player)
-                                       (and show_stats
-                                            (setf live_info.inner-h-t-m-l (concatenate 'string jaws.game_loop.fps
-                                                                                       "fps. P: "
-                                                                                       (parse-int player.x)
-                                                                                       "/"
-                                                                                       (parse-int player.y)
-                                                                                       "  PV "
-                                                                                       (parse-int player.vx)
-                                                                                       "/"
-                                                                                       (parse-int player.vy)
-                                                                                       "  Viewport: "
-                                                                                       (parse-int viewport.x)
-                                                                                       "/"
-                                                                                       (parse-int viewport.y)
-                                                                                       " World: "
-                                                                                       (parse-int world.width)
-                                                                                       "/"
-                                                                                       (parse-int world.height)))))
+                              (viewport.center-around player)
+                              (and show_stats
+                                   (setf live_info.inner-h-t-m-l (concatenate 'string jaws.game_loop.fps
+                                                                              "fps. P: "
+                                                                              (parse-int player.x)
+                                                                              "/"
+                                                                              (parse-int player.y)
+                                                                              "  PV "
+                                                                              (parse-int player.vx)
+                                                                              "/"
+                                                                              (parse-int player.vy)
+                                                                              "  Viewport: "
+                                                                              (parse-int viewport.x)
+                                                                              "/"
+                                                                              (parse-int viewport.y)
+                                                                              " World: "
+                                                                              (parse-int world.width)
+                                                                              "/"
+                                                                              (parse-int world.height)))))
                      
                      draw (lambda ()
                             (jaws.clear)
                             (viewport.apply (lambda ()
                                               (blocks.draw)
-                                              (_ map (powerups (lambda (x) ((@ (x.rect) draw)))))
+                                        ;(_ map (powerups (lambda (x) ((@ (x.rect) draw)))))
                                               (player.draw)
-                                              ((@ (player.rect) draw)))))))
+                                        ;((@ (player.rect) draw))
+                                              )))))
 
               (with-document-ready (lambda ()
                                      (jaws.assets.add (array "droid_big.png"
@@ -277,5 +271,4 @@
                                                              "grass-dirt.png"))
 
                                      (jaws.start platform))))))))
-
 

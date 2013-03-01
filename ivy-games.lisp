@@ -158,9 +158,9 @@
                               (or (< (@ o x) 0)
                                   (> (@ o x) (@ world width))))
                  handle_collision (lambda (bullet target)
-                                    (console.log "BOINKG")
-                                    (blocks.remove bullet)
-                                    (blocks.remove target))
+                                    (-= target.health bullet.health)
+                                    (console.log target.health)
+                                    (blocks.remove bullet))
                  drop-powerups (lambda ()
                                  (dotimes (i 20)
                                    (add-powerup :x (+ 30 (* 32 i)) :frame i)))
@@ -207,6 +207,7 @@
                                                            :y (- world.height (* 2 texture-size))
                                                            :image "/textures/dog_house.png")))
                                  (setf doghouse.shootable 1)
+                                 (setf doghouse.health 100)
                                  (blocks.push doghouse))
 
 
@@ -215,6 +216,7 @@
                                                            :y (- world.height 120)
                                                            :image "factory.png")))
                                  (setf factory.shootable 1)
+                                 (setf factory.health 100)
                                  (setf factory.factory 1) ; mark as a factory for iv.update()
                                  ; a list of rats that the factory produces
                                  (blocks.push factory)))
@@ -255,6 +257,7 @@
                                                                  image "daisy.png"
                                                                  anchor "center_bottom"))))
                          (setf player.can_fire "true")
+                         (setf player.health 1000)
 
                          ((@ iv add-scenery))
 
@@ -296,6 +299,7 @@
                                 (setf shot.vx (if player.flipped
                                                   -10
                                                   10))
+                                (setf shot.health 50 )
                                 (setf shot.vy 0)
                                 (setf shot.bullet 1)
                                 (blocks.push shot))
@@ -350,6 +354,12 @@
                                                 (iv.handle_collision bullet cbs))
                                               (console.log "no"))))))
 
+                          ; Finally, remove anything that has lost its life.
+                          (fmap blocks.sprites
+                                (lambda (obj)
+                                  (when (or (< obj.health 0)
+                                            (= obj.health 0))
+                                    (blocks.remove obj))))
 
                           
                           (and show_stats
@@ -377,8 +387,8 @@
                         (viewport.apply (lambda ()
                                           (blocks.draw)
                                           (player.draw)
-                                          ;; (fmap blocks.sprites (lambda (x)
-                                          ;;                        ((@ ((@ x.rect)) draw))))
+                                          (fmap blocks.sprites (lambda (x)
+                                                                 ((@ ((@ x.rect)) draw))))
                                           null)))))
 
           (with-document-ready (lambda ()

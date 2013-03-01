@@ -109,6 +109,8 @@
           (defvar player)
 
           (defvar scenery)
+
+          (defvar canbeshot)
           (defvar bullets)
 
           (defvar blocks)
@@ -130,6 +132,12 @@
                 
                 (create
 
+                 handle_collision (lambda (bullet target)
+                                    (console.log "BOINKG")
+                                    (bullets.remove bullet)
+                                    (setf target.alpha 0)
+                                    (canbeshot.remove target))
+                 
                  drop-powerups (lambda ()
                                  (dotimes (i 20)
                                    (add-powerup :x (+ 30 (* 32 i)) :frame i)))
@@ -142,7 +150,11 @@
                                 null)
 
                  add-roo (lambda ()
-                           (blocks.push (new-sprite :image "roo.png" :x 512 :y (- world.height (* 2 texture-size)))))
+                           (let ((the-roo (new-sprite :image "roo.png"
+                                                      :x 512
+                                                      :y (- world.height (* 2 texture-size)))))
+                             (canbeshot.push the-roo)
+                             (blocks.push the-roo)))
                              
                  player-move (lambda ()
                                (+= player.x player.vx)
@@ -173,7 +185,11 @@
                          (setf live_info (gebi "fps"))
                                      
                          (setf blocks (new (jaws.-sprite-list)))
-                         (setf bullets (new (-Array)))
+
+                         (setf canbeshot (new (jaws.-sprite-list)))
+
+                         (setf bullets (new (jaws.-sprite-list)))
+
                          (setf scenery (new (jaws.-sprite-list)))
 
                          (setf world (new (jaws.-rect 0 0 3200 640)))
@@ -209,9 +225,6 @@
                              ((> i world.width))
                            (blocks.push (new-sprite :x i :y (- world.height texture-size))))
                              
-                                        ; draw roo
-                         ;; (blocks.push (new-sprite :x 256 :y (- world.height (* 2 texture-size))
-                         ;;                          :image "roo.png"))
 
                          (platform.add-scenery)
                          (platform.add-roo)
@@ -253,8 +266,8 @@
                                                       :y (- player.y 40)
                                                       :image "bullet.png")))
                                 (setf shot.vx (if player.flipped
-                                             -10
-                                             10))
+                                                  -10
+                                                  10))
                                 (setf shot.vy 0)
                                 (bullets.push shot))
                               
@@ -265,10 +278,27 @@
                           (+= player.vy 0.4)
                           (platform.player-move)
                           
-                          (_ map (bullets (lambda (x)
+
+                          ; Move the bullets
+                          (_ map (bullets.sprites (lambda (x)
                                             (+= x.x x.vx)
                                             (+= x.y x.vy))))
 
+                          ; clean out the bullets that are out of view.
+                          (_ map (bullets.sprites (lambda (bullet)
+                                            (when (or (< bullet.x 0)
+                                                      (> bullet.x jaws.width))
+                                              (bullets.remove bullet)))))
+
+                          ; Now check and see if the bullets have hit anything.
+                          (_ map (bullets.sprites
+                                  (lambda (bullet)
+                                    (_ map (canbeshot.sprites
+                                            (lambda (cbs)
+                                              (when ((@ jaws collide-one-with-one) bullet cbs)
+                                                (console.log "collision!")
+                                                (platform.handle_collision bullet cbs))))))))
+                          
                           (viewport.center-around player)
                           (and show_stats
                                (setf live_info.inner-h-t-m-l
@@ -294,11 +324,14 @@
                  draw (lambda ()
                         (jaws.clear)
                         (viewport.apply (lambda ()
-                                          (blocks.draw)
                                           (scenery.draw)
+                                          (blocks.draw)
                                           (player.draw)
-                                          (_ map (bullets (lambda (x)
-                                                            (x.draw))))
+                                          (_ map (canbeshot.sprites (lambda (x)
+                                                                      ((@ (x.rect) draw)))))
+                                          (_ map (bullets.sprites (lambda (x)
+                                                                    ((@ (x.rect) draw))
+                                                                    (x.draw))))
                                           null)))))
 
           (with-document-ready (lambda ()

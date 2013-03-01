@@ -44,6 +44,9 @@
   `(jaws.log ,message 1))
 (defpsmacro _ (func (&rest body))
   `((@ _ ,func) ,@body))
+(defpsmacro fmap (obj (&rest func))
+  `(_ map (,obj ,func)))
+
 (defpsmacro add-powerup (&key (x 0) (frame 1))
   (let ((nom (gensym)))
     `(let ((,nom (new-sprite :x ,x :y (- world.height (* 2 texture-size)))))
@@ -109,7 +112,7 @@
           (defvar player)
 
           (defvar scenery)
-
+          (defvar autonomy)
           (defvar canbeshot)
           (defvar bullets)
 
@@ -132,30 +135,31 @@
                 
                 (create
 
+                 is_outside (lambda (o)
+                              (or (< (@ o x) 0)
+                                  (> (@ o x) (@ world width))))
                  handle_collision (lambda (bullet target)
                                     (console.log "BOINKG")
                                     (bullets.remove bullet)
                                     (setf target.alpha 0)
                                     (canbeshot.remove target))
-                 
                  drop-powerups (lambda ()
                                  (dotimes (i 20)
                                    (add-powerup :x (+ 30 (* 32 i)) :frame i)))
-
                  random-tiles (lambda ()
                                 (dotimes (i 100)
                                   (let ((rx (* texture-size (parse-int (* 100 (-math.random)))))
                                         (ry (- world.height (* texture-size (parse-int (* 10 (-math.random)))))))
                                     (blocks.push (new-sprite :x rx :y ry))))
                                 null)
-
                  add-roo (lambda ()
                            (let ((the-roo (new-sprite :image "roo.png"
                                                       :x 512
                                                       :y (- world.height (* 2 texture-size)))))
+                            
+                             (autonomy.push the-roo)
                              (canbeshot.push the-roo)
                              (blocks.push the-roo)))
-                             
                  player-move (lambda ()
                                (+= player.x player.vx)
                                (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
@@ -166,20 +170,24 @@
                                (defvar block (aref (tile_map.at-rect (player.rect)) 0))
                                (if block
                                    (progn
-                                     (if (> player.vy 0)
-                                         (progn
-                                           (setf player.can_jump true)
-                                           (setf player.y (- (@ (block.rect) y) 1))))
-                                     (if (< player.vy 0)
-                                         (setf player.y (+ (@ (block.rect) bottom) player.height)))
+                                     (when (> player.vy 0)
+                                       (setf player.can_jump true)
+                                       (setf player.y (- (@ (block.rect) y) 1)))
+                                     (when (< player.vy 0)
+                                       (setf player.y (+ (@ (block.rect) bottom) player.height)))
                                      (setf player.vy 0))))
-
                  add-scenery (lambda ()
-                               (scenery.push (new-sprite :anchor "bottom_left"
+                               (scenery.push (new-sprite :anchor "bottom_center"
                                                          :x 512
                                                          :scale .5
                                                          :y (- world.height (* 2 texture-size))
                                                          :image "/textures/dog_house.png")))
+
+
+
+
+                                        ; setup, update, and draw are the three main
+                                        ; jawsjs functions.
 
                  setup (lambda ()
                          (setf live_info (gebi "fps"))
@@ -199,11 +207,11 @@
                                                           frame_size (array 32 32)
                                                           scale_image 2))))
 
+                         (setf autonomy (new -array))
                          (setf powerups (new -array))
                          (setf pickups-sheet (new (jaws.-sprite-sheet
                                                    (create image "/blocks/pickups.png"
                                                            frame_size (array 34 42)
-                                        ;scale_image 2
                                                            orientation "right"))))
 
 
@@ -229,7 +237,8 @@
                          (platform.add-scenery)
                          (platform.add-roo)
                          (tile_map.push blocks)
-                             
+                        
+
                          (setf player.vx 0)
                          (setf player.vy 0)
                          (setf player.can_jump true)
@@ -238,9 +247,8 @@
                          (setf jaws.context.moz-image-smoothing-enabled true)
                          (setf jaws.prevent-default-keys (array "up" "down" "left" "right" "space"))
                          null)
-                 
                  update (lambda ()
-                          (setf show_stats 1)
+                                        ;(setf show_stats 1)
                           
                           (when (jaws.pressed "left")
                             (unless player.flipped
@@ -274,31 +282,48 @@
                               (set-timeout (lambda ()
                                              (setf player.can_fire "true")) 500)))
                               
-                          ;; movement
+                          ;; move thep player
                           (+= player.vy 0.4)
                           (platform.player-move)
                           
+                                        ; move the other actors
+                          (fmap autonomy
+                                (lambda (x)
+                                  (unless x.vx
+                                    (setf x.vx -.5))
+                                  (when (platform.is_outside x)
+                                    ((@ x flip))
+                                    (if (> x.vx 0)
+                                        (setf x.vx -.5)
+                                        (setf x.vx .5)))
+                                          
+                                  (+= x.x x.vx)))
 
-                          ; Move the bullets
-                          (_ map (bullets.sprites (lambda (x)
-                                            (+= x.x x.vx)
-                                            (+= x.y x.vy))))
+                                        ; Move the bullets
+                          (fmap bullets.sprites
+                                (lambda (x)
+                                  (+= x.x x.vx)
+                                  (+= x.y x.vy)))
 
-                          ; clean out the bullets that are out of view.
-                          (_ map (bullets.sprites (lambda (bullet)
-                                            (when (or (< bullet.x 0)
-                                                      (> bullet.x jaws.width))
-                                              (bullets.remove bullet)))))
+                                        ; clean out the bullets that are out of view.
+                          (fmap bullets.sprites
+                                (lambda (bullet)
+                                  (when (platform.is_outside bullet)
+                                    (bullets.remove bullet))))
 
-                          ; Now check and see if the bullets have hit anything.
-                          (_ map (bullets.sprites
-                                  (lambda (bullet)
-                                    (_ map (canbeshot.sprites
-                                            (lambda (cbs)
-                                              (when ((@ jaws collide-one-with-one) bullet cbs)
-                                                (console.log "collision!")
-                                                (platform.handle_collision bullet cbs))))))))
+                                        ; Now check and see if the bullets have hit anything.
+                          (fmap bullets.sprites
+                                (lambda (bullet)
+                                  (fmap canbeshot.sprites
+                                        (lambda (cbs)
+                                          (when ((@ jaws collide-one-with-one) bullet cbs)
+                                            (console.log "collision!")
+                                            (platform.handle_collision bullet cbs))))))
                           
+                          (when (eq canbeshot.length 0)
+                            ((@ platform add-roo)))
+
+
                           (viewport.center-around player)
                           (and show_stats
                                (setf live_info.inner-h-t-m-l
@@ -320,18 +345,15 @@
                                                   "/"
                                                   (parse-int world.height))))
                           null)
-                     
                  draw (lambda ()
                         (jaws.clear)
                         (viewport.apply (lambda ()
-                                          (scenery.draw)
-                                          (blocks.draw)
-                                          (player.draw)
-                                          (_ map (canbeshot.sprites (lambda (x)
-                                                                      ((@ (x.rect) draw)))))
-                                          (_ map (bullets.sprites (lambda (x)
-                                                                    ((@ (x.rect) draw))
-                                                                    (x.draw))))
+                                        ;(scenery.draw)
+                                        (blocks.draw)
+                                        (player.draw)
+                                        ;(bullets.draw)
+                                          (fmap blocks.sprites (lambda (x)
+                                                                 ((@ ((@ x.rect)) draw))))
                                           null)))))
 
           (with-document-ready (lambda ()

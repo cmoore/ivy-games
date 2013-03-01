@@ -110,6 +110,7 @@
 
           (defvar scenery)
           (defvar bullets)
+
           (defvar blocks)
 
           (defvar fps)
@@ -126,6 +127,7 @@
           (defvar pickups-sheet)
 
           (setf platform
+                
                 (create
 
                  drop-powerups (lambda ()
@@ -138,6 +140,7 @@
                                         (ry (- world.height (* texture-size (parse-int (* 10 (-math.random)))))))
                                     (blocks.push (new-sprite :x rx :y ry))))
                                 null)
+
                  add-roo (lambda ()
                            (blocks.push (new-sprite :image "roo.png" :x 512 :y (- world.height (* 2 texture-size)))))
                              
@@ -170,7 +173,7 @@
                          (setf live_info (gebi "fps"))
                                      
                          (setf blocks (new (jaws.-sprite-list)))
-                         (setf bullets (new (jaws.-sprite-list)))
+                         (setf bullets (new (-Array)))
                          (setf scenery (new (jaws.-sprite-list)))
 
                          (setf world (new (jaws.-rect 0 0 3200 640)))
@@ -179,7 +182,6 @@
                                                   (create image "/blocks/blocks1.png"
                                                           frame_size (array 32 32)
                                                           scale_image 2))))
-
 
                          (setf powerups (new -array))
                          (setf pickups-sheet (new (jaws.-sprite-sheet
@@ -226,7 +228,7 @@
                  
                  update (lambda ()
                           (setf show_stats 1)
-                                                            
+                          
                           (when (jaws.pressed "left")
                             (unless player.flipped
                               (player.flip))
@@ -245,20 +247,27 @@
                           (when (jaws.pressed "space")
                             (when (eq player.can_fire "true")
                               (setf player.can_fire "false")
-                              (bullets.push (new-sprite :x (@ (player.rect) right)
-                                                        :y (- player.y 40)
-                                                        :anchor "center"
-                                                        :image "bullet.png"))
+                              (let ((shot (new-sprite :x (if player.flipped
+                                                             (- (@ (player.rect) right) 65)
+                                                             (@ (player.rect) right))
+                                                      :y (- player.y 40)
+                                                      :image "bullet.png")))
+                                (setf shot.vx (if player.flipped
+                                             -10
+                                             10))
+                                (setf shot.vy 0)
+                                (bullets.push shot))
+                              
                               (set-timeout (lambda ()
                                              (setf player.can_fire "true")) 500)))
-
                               
                           ;; movement
                           (+= player.vy 0.4)
                           (platform.player-move)
-                          (_ map (bullets.sprites (lambda (bullet)
-                                                    (+= bullet.x 10))))
-
+                          
+                          (_ map (bullets (lambda (x)
+                                            (+= x.x x.vx)
+                                            (+= x.y x.vy))))
 
                           (viewport.center-around player)
                           (and show_stats
@@ -288,7 +297,8 @@
                                           (blocks.draw)
                                           (scenery.draw)
                                           (player.draw)
-                                          (bullets.draw)
+                                          (_ map (bullets (lambda (x)
+                                                            (x.draw))))
                                           null)))))
 
           (with-document-ready (lambda ()

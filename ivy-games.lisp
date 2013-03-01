@@ -76,9 +76,7 @@
         (:script :src "/underscore.js")
         (:script :src "/js/jaws.js"))
        (:body
-        (:div :class "container"
-              (:div :class "row" :style "margin-top: 10px;"
-                    ,@body)))))))
+        ,@body)))))
 
 (defmacro with-game (&rest body)
   `(with-page
@@ -86,7 +84,6 @@
              (:canvas :id "canvas" :width "800" :height "400")
              (:br)
              (:div :id "fps")
-             (:div :id "jaws-log")
              ,@body)))
 
 (defun game-index ()
@@ -141,7 +138,9 @@
                                         (ry (- world.height (* texture-size (parse-int (* 10 (-math.random)))))))
                                     (blocks.push (new-sprite :x rx :y ry))))
                                 null)
-                     
+                 add-roo (lambda ()
+                           (blocks.push (new-sprite :image "roo.png" :x 512 :y (- world.height (* 2 texture-size)))))
+                             
                  player-move (lambda ()
                                (+= player.x player.vx)
                                (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
@@ -213,6 +212,7 @@
                          ;;                          :image "roo.png"))
 
                          (platform.add-scenery)
+                         (platform.add-roo)
                          (tile_map.push blocks)
                              
                          (setf player.vx 0)

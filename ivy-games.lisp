@@ -39,7 +39,7 @@
 (defpsmacro += (a b)
   `(setf ,a (+ ,a ,b)))
 (defpsmacro gebi (name)
-  `(document.get-Element-By-Id ,name))
+  `((@ document get-Element-By-Id) ,name))
 (defpsmacro jlog (message)
   `(jaws.log ,message 1))
 (defpsmacro _ (func (&rest body))
@@ -50,7 +50,7 @@
 (defpsmacro add-powerup (&key (x 0) (frame 1))
   (let ((nom (gensym)))
     `(let ((,nom (new-sprite :x ,x :y (- world.height (* 2 texture-size)))))
-       ((@ ,nom set-image) (aref pickups-sheet.frames ,frame))
+       ((@ ,nom set-image) (aref (@ pickups-sheet frames) ,frame))
        (powerups.push ,nom)
        (blocks.push ,nom))))
 
@@ -110,12 +110,6 @@
        (str
         (ps
           (defvar player)
-
-          (defvar scenery)
-          (defvar autonomy)
-          (defvar canbeshot)
-          (defvar bullets)
-
           (defvar blocks)
 
           (defvar fps)
@@ -125,24 +119,48 @@
           (defvar show_stats)
           (defvar texture-size 64)
 
-          (defvar powerups)
-
-          (defvar roo)
           (defvar blocks-sheet)
           (defvar pickups-sheet)
 
-          (setf platform
+          (setf iv
                 
                 (create
+
+                 add_auto (lambda ()
+                            (let ((ohgod (new-sprite :x player.x
+                                                     :y (- world.height 128)
+                                                     :image "roo.png")))
+                              (setf ohgod.autonymous 1)
+                              (blocks.push ohgod)))
+
+                 all_shootable (lambda ()
+                                 (_ filter (blocks.sprites (lambda (x)
+                                                             (= x.shootable 1)))))
+
+                 all_autonymous (lambda ()
+                                  (_ filter (blocks.sprites (lambda (x)
+                                                              (= x.autonymous 1)))))
+
+                 all_bullets (lambda ()
+                               (_ filter (blocks.sprites (lambda (x)
+                                                           (= x.bullet 1)))))
+
+                 all_blocking (lambda ()
+                                (_ filter (blocks.sprites (lambda (x)
+                                                            (= x.blocking 1)))))
+
+
+
+
+
 
                  is_outside (lambda (o)
                               (or (< (@ o x) 0)
                                   (> (@ o x) (@ world width))))
                  handle_collision (lambda (bullet target)
                                     (console.log "BOINKG")
-                                    (bullets.remove bullet)
-                                    (setf target.alpha 0)
-                                    (canbeshot.remove target))
+                                    (blocks.remove bullet)
+                                    (blocks.remove target))
                  drop-powerups (lambda ()
                                  (dotimes (i 20)
                                    (add-powerup :x (+ 30 (* 32 i)) :frame i)))
@@ -156,9 +174,8 @@
                            (let ((the-roo (new-sprite :image "roo.png"
                                                       :x 512
                                                       :y (- world.height (* 2 texture-size)))))
-                            
-                             (autonomy.push the-roo)
-                             (canbeshot.push the-roo)
+                             (iv.make_autonymous the-roo)
+                             (iv.make_shootable the-roo)
                              (blocks.push the-roo)))
                  player-move (lambda ()
                                (+= player.x player.vx)
@@ -177,11 +194,30 @@
                                        (setf player.y (+ (@ (block.rect) bottom) player.height)))
                                      (setf player.vy 0))))
                  add-scenery (lambda ()
-                               (scenery.push (new-sprite :anchor "bottom_center"
-                                                         :x 512
-                                                         :scale .5
-                                                         :y (- world.height (* 2 texture-size))
-                                                         :image "/textures/dog_house.png")))
+                                        ; draw the ground
+                               (do ((i 0 (+ i texture-size)))
+                                   ((> i world.width))
+                                 (let ((new-block (new-sprite :x i :y (- world.height texture-size))))
+                                   (setf (@ new-block blocking) 1)
+                                   (blocks.push new-block)))
+                             
+                               (let ((doghouse (new-sprite :anchor "bottom_center"
+                                                           :x 512
+                                                           :scale .5
+                                                           :y (- world.height (* 2 texture-size))
+                                                           :image "/textures/dog_house.png")))
+                                 (setf doghouse.shootable 1)
+                                 (blocks.push doghouse))
+
+
+                               (let* ((factory (new-sprite :x 512
+                                                           :scale 1.5
+                                                           :y (- world.height 120)
+                                                           :image "factory.png")))
+                                 (setf factory.shootable 1)
+                                 (setf factory.factory 1) ; mark as a factory for iv.update()
+                                 ; a list of rats that the factory produces
+                                 (blocks.push factory)))
 
 
 
@@ -194,12 +230,6 @@
                                      
                          (setf blocks (new (jaws.-sprite-list)))
 
-                         (setf canbeshot (new (jaws.-sprite-list)))
-
-                         (setf bullets (new (jaws.-sprite-list)))
-
-                         (setf scenery (new (jaws.-sprite-list)))
-
                          (setf world (new (jaws.-rect 0 0 3200 640)))
 
                          (setf blocks-sheet (new (jaws.-sprite-sheet
@@ -207,8 +237,6 @@
                                                           frame_size (array 32 32)
                                                           scale_image 2))))
 
-                         (setf autonomy (new -array))
-                         (setf powerups (new -array))
                          (setf pickups-sheet (new (jaws.-sprite-sheet
                                                    (create image "/blocks/pickups.png"
                                                            frame_size (array 34 42)
@@ -223,42 +251,34 @@
                                                                      max_y world.height))))
                              
                          (setf player (new (jaws.-sprite (create x 128
-                                                                 y 128
+                                                                 y (- world.height 128)
                                                                  image "daisy.png"
                                                                  anchor "center_bottom"))))
                          (setf player.can_fire "true")
 
-                                        ; draw the ground
-                         (do ((i 0 (+ i texture-size)))
-                             ((> i world.width))
-                           (blocks.push (new-sprite :x i :y (- world.height texture-size))))
-                             
-
-                         (platform.add-scenery)
-                         (platform.add-roo)
-                         (tile_map.push blocks)
-                        
+                         ((@ iv add-scenery))
 
                          (setf player.vx 0)
                          (setf player.vy 0)
                          (setf player.can_jump true)
 
-                         (setf player.y 64)
+                         (tile_map.push (iv.all_blocking))
+
                          (setf jaws.context.moz-image-smoothing-enabled true)
                          (setf jaws.prevent-default-keys (array "up" "down" "left" "right" "space"))
+
                          null)
                  update (lambda ()
-                                        ;(setf show_stats 1)
-                          
+
                           (when (jaws.pressed "left")
                             (unless player.flipped
                               (player.flip))
-                            (setf player.vx (- 2)))
+                            (setf player.vx (- 4)))
                               
                           (when (jaws.pressed "right")
                             (when player.flipped
                               (player.flip))
-                            (setf player.vx 2))
+                            (setf player.vx 4))
 
                           (when (jaws.pressed "up")
                             (when player.can_jump
@@ -277,21 +297,22 @@
                                                   -10
                                                   10))
                                 (setf shot.vy 0)
-                                (bullets.push shot))
+                                (setf shot.bullet 1)
+                                (blocks.push shot))
                               
                               (set-timeout (lambda ()
                                              (setf player.can_fire "true")) 500)))
                               
-                          ;; move thep player
+                          ;; move the player
                           (+= player.vy 0.4)
-                          (platform.player-move)
+                          (iv.player-move)
                           
                                         ; move the other actors
-                          (fmap autonomy
+                          (fmap (iv.all_autonymous)
                                 (lambda (x)
                                   (unless x.vx
                                     (setf x.vx -.5))
-                                  (when (platform.is_outside x)
+                                  (when (iv.is_outside x)
                                     ((@ x flip))
                                     (if (> x.vx 0)
                                         (setf x.vx -.5)
@@ -299,32 +320,38 @@
                                           
                                   (+= x.x x.vx)))
 
+                          (viewport.center-around player)
+
+
+
+                          ;Factories?
+
+                                                    
                                         ; Move the bullets
-                          (fmap bullets.sprites
+                          (fmap (iv.all_bullets)
                                 (lambda (x)
                                   (+= x.x x.vx)
                                   (+= x.y x.vy)))
 
                                         ; clean out the bullets that are out of view.
-                          (fmap bullets.sprites
+                          (fmap (iv.all_bullets)
                                 (lambda (bullet)
-                                  (when (platform.is_outside bullet)
-                                    (bullets.remove bullet))))
+                                  (when (iv.is_outside bullet)
+                                    ((@ blocks remove) bullet))))
 
                                         ; Now check and see if the bullets have hit anything.
-                          (fmap bullets.sprites
+                          (fmap (iv.all_bullets)
                                 (lambda (bullet)
-                                  (fmap canbeshot.sprites
+                                  (fmap (iv.all_shootable)
                                         (lambda (cbs)
-                                          (when ((@ jaws collide-one-with-one) bullet cbs)
-                                            (console.log "collision!")
-                                            (platform.handle_collision bullet cbs))))))
+                                          (if ((@ jaws collide-one-with-one) bullet cbs)
+                                              (progn
+                                                (console.log "collision!")
+                                                (iv.handle_collision bullet cbs))
+                                              (console.log "no"))))))
+
+
                           
-                          (when (eq canbeshot.length 0)
-                            ((@ platform add-roo)))
-
-
-                          (viewport.center-around player)
                           (and show_stats
                                (setf live_info.inner-h-t-m-l
                                      (concatenate 'string jaws.game_loop.fps
@@ -348,12 +375,10 @@
                  draw (lambda ()
                         (jaws.clear)
                         (viewport.apply (lambda ()
-                                        ;(scenery.draw)
-                                        (blocks.draw)
-                                        (player.draw)
-                                        ;(bullets.draw)
-                                          (fmap blocks.sprites (lambda (x)
-                                                                 ((@ ((@ x.rect)) draw))))
+                                          (blocks.draw)
+                                          (player.draw)
+                                          ;; (fmap blocks.sprites (lambda (x)
+                                          ;;                        ((@ ((@ x.rect)) draw))))
                                           null)))))
 
           (with-document-ready (lambda ()
@@ -365,6 +390,8 @@
                                                          "/textures/dog_house.png"
                                                          "cherries.png"
                                                          "roo.png"
+                                                         "rat.png"
+                                                         "factory.png"
 
                                                          "/textures/dirt.png"
                                                          "/textures/bullet_1.png"
@@ -383,5 +410,5 @@
                                                          "bullet.png"
                                                          "dog-anim.png"))
 
-                                 (jaws.start platform))))))))
+                                 (jaws.start iv))))))))
 

@@ -122,10 +122,39 @@
           (defvar blocks-sheet)
           (defvar pickups-sheet)
 
+                    
           (setf iv
                 
                 (create
 
+                 test_trash_can (lambda ()
+                                  (let ((trash-can (new-sprite :x player.x
+                                                               :y player.y
+                                                               :image "/textures/trash_can.png")))
+                                    (setf trash-can.shootable 1)))
+                 create_rat (lambda ()
+                              (let ((new-rat (new-sprite :x (- player.x 128)
+                                                         :y player.y
+                                                         :scale 1.5
+                                                         :image "rat.png")))
+                                (setf new-rat.autonymous 1)
+                                (setf new-rat.shootable 1)
+                                (setf new-rat.health 100)
+                                (blocks.push new-rat)))
+                 create_chicken_black (lambda ()
+                                        (let ((new-chicken (new-sprite :x (- player.x 128)
+                                                                       :y player.y
+                                                                       :image "roo.png")))
+                                          (setf new-chicken.autonymous 1)
+                                          (setf new-chicken.shootable 1)
+                                          (setf new-chicken.health 200)
+                                          (blocks.push new-chicken)))
+                 draw_text (lambda (text)
+                             (setf jaws.context.font "20pt Arial")
+                             (setf jaws.context.line-width 1)
+                             (setf jaws.context.fill-style "red")
+                             (setf jaws.context.stroke-style "rgba(200,200,200,0.0)")
+                             (jaws.context.fill-text text 10 10))
                  add_auto (lambda ()
                             (let ((ohgod (new-sprite :x player.x
                                                      :y (- world.height 128)
@@ -160,6 +189,8 @@
                  handle_collision (lambda (bullet target)
                                     (-= target.health bullet.health)
                                     (console.log target.health)
+                                    (when target.shot_image
+                                      (target.set-image target.shot_image))
                                     (blocks.remove bullet))
                  drop-powerups (lambda ()
                                  (dotimes (i 20)
@@ -208,18 +239,8 @@
                                                            :image "/textures/dog_house.png")))
                                  (setf doghouse.shootable 1)
                                  (setf doghouse.health 100)
-                                 (blocks.push doghouse))
-
-
-                               (let* ((factory (new-sprite :x 512
-                                                           :scale 1.5
-                                                           :y (- world.height 120)
-                                                           :image "factory.png")))
-                                 (setf factory.shootable 1)
-                                 (setf factory.health 100)
-                                 (setf factory.factory 1) ; mark as a factory for iv.update()
-                                 ; a list of rats that the factory produces
-                                 (blocks.push factory)))
+                                 (setf doghouse.shot_image "/textures/dog_house_broken.png")
+                                 (blocks.push doghouse)))
 
 
 
@@ -328,7 +349,7 @@
 
 
 
-                          ;Factories?
+                                        ;Factories?
 
                                                     
                                         ; Move the bullets
@@ -354,7 +375,7 @@
                                                 (iv.handle_collision bullet cbs))
                                               (console.log "no"))))))
 
-                          ; Finally, remove anything that has lost its life.
+                                        ; Finally, remove anything that has lost its life.
                           (fmap blocks.sprites
                                 (lambda (obj)
                                   (when (or (< obj.health 0)
@@ -387,8 +408,8 @@
                         (viewport.apply (lambda ()
                                           (blocks.draw)
                                           (player.draw)
-                                          (fmap blocks.sprites (lambda (x)
-                                                                 ((@ ((@ x.rect)) draw))))
+                                          ;; (fmap blocks.sprites (lambda (x)
+                                          ;;                        ((@ ((@ x.rect)) draw))))
                                           null)))))
 
           (with-document-ready (lambda ()

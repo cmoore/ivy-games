@@ -87,7 +87,9 @@
              (:canvas :id "canvas" :width "800" :height "400")
              (:br)
              (:div :id "fps")
-             ,@body)))
+             ,@body
+             (:div :style "width:100px;height:100px;background-color:#eee;"
+                   :onclick (str (ps (iv.fire)))))))
 
 (defun game-index ()
   (with-page
@@ -127,6 +129,24 @@
                 
                 (create
 
+                 fire (lambda ()
+                        (when (eq player.can_fire "true")
+                          (setf player.can_fire "false")
+                          (let ((shot (new-sprite :x (if player.flipped
+                                                         (- (@ (player.rect) right) 65)
+                                                         (@ (player.rect) right))
+                                                  :y (- player.y 40)
+                                                  :image "/img/bullet.png")))
+                            (setf shot.vx (if player.flipped
+                                              -10
+                                              10))
+                            (setf shot.health 50 )
+                            (setf shot.vy 0)
+                            (setf shot.bullet 1)
+                            (blocks.push shot))
+                              
+                          (set-timeout (lambda ()
+                                         (setf player.can_fire "true")) 500))                        )
                  test_trash_can (lambda ()
                                   (let ((trash-can (new-sprite :x player.x
                                                                :y player.y
@@ -136,7 +156,7 @@
                               (let ((new-rat (new-sprite :x (- player.x 128)
                                                          :y player.y
                                                          :scale 1.5
-                                                         :image "rat.png")))
+                                                         :image "/img/rat.png")))
                                 (setf new-rat.autonymous 1)
                                 (setf new-rat.shootable 1)
                                 (setf new-rat.health 100)
@@ -144,7 +164,7 @@
                  create_chicken_black (lambda ()
                                         (let ((new-chicken (new-sprite :x (- player.x 128)
                                                                        :y player.y
-                                                                       :image "roo.png")))
+                                                                       :image "/img/roo.png")))
                                           (setf new-chicken.autonymous 1)
                                           (setf new-chicken.shootable 1)
                                           (setf new-chicken.health 200)
@@ -310,23 +330,7 @@
                               (setf player.can_jump false)))
                              
                           (when (jaws.pressed "space")
-                            (when (eq player.can_fire "true")
-                              (setf player.can_fire "false")
-                              (let ((shot (new-sprite :x (if player.flipped
-                                                             (- (@ (player.rect) right) 65)
-                                                             (@ (player.rect) right))
-                                                      :y (- player.y 40)
-                                                      :image "/img/bullet.png")))
-                                (setf shot.vx (if player.flipped
-                                                  -10
-                                                  10))
-                                (setf shot.health 50 )
-                                (setf shot.vy 0)
-                                (setf shot.bullet 1)
-                                (blocks.push shot))
-                              
-                              (set-timeout (lambda ()
-                                             (setf player.can_fire "true")) 500)))
+                            (iv.fire))
                               
                           ;; move the player
                           (+= player.vy 0.4)

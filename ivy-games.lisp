@@ -25,7 +25,7 @@
   (css-lite:css
    (("body") (:font-family "Open Sans"))))
 
-(defpsmacro new-sprite (&key (x 0) (y 0) (scale 1) (image "/textures/dirt.png") (anchor "bottom_center") (flipped false))
+(defpsmacro new-sprite (&key (x 0) (y 0) (scale 1) (image "/img/dirt.png") (anchor "bottom_center") (flipped false))
   `(new (jaws.-sprite (create image ,image
                               scale ,scale
                               x ,x
@@ -130,7 +130,7 @@
                  test_trash_can (lambda ()
                                   (let ((trash-can (new-sprite :x player.x
                                                                :y player.y
-                                                               :image "/textures/trash_can.png")))
+                                                               :image "/img/trash_can.png")))
                                     (setf trash-can.shootable 1)))
                  create_rat (lambda ()
                               (let ((new-rat (new-sprite :x (- player.x 128)
@@ -202,7 +202,7 @@
                                     (blocks.push (new-sprite :x rx :y ry))))
                                 null)
                  add-roo (lambda ()
-                           (let ((the-roo (new-sprite :image "roo.png"
+                           (let ((the-roo (new-sprite :image "/img/roo.png"
                                                       :x 512
                                                       :y (- world.height (* 2 texture-size)))))
                              (iv.make_autonymous the-roo)
@@ -236,10 +236,10 @@
                                                            :x 512
                                                            :scale .5
                                                            :y (- world.height (* 2 texture-size))
-                                                           :image "/textures/dog_house.png")))
+                                                           :image "/img/dog_house.png")))
                                  (setf doghouse.shootable 1)
                                  (setf doghouse.health 100)
-                                 (setf doghouse.shot_image "/textures/dog_house_broken.png")
+                                 (setf doghouse.shot_image "/img/dog_house_broken.png")
                                  (blocks.push doghouse)))
 
 
@@ -256,12 +256,12 @@
                          (setf world (new (jaws.-rect 0 0 3200 640)))
 
                          (setf blocks-sheet (new (jaws.-sprite-sheet
-                                                  (create image "/blocks/blocks1.png"
+                                                  (create image "/img/blocks1.png"
                                                           frame_size (array 32 32)
                                                           scale_image 2))))
 
                          (setf pickups-sheet (new (jaws.-sprite-sheet
-                                                   (create image "/blocks/pickups.png"
+                                                   (create image "/img/pickups.png"
                                                            frame_size (array 34 42)
                                                            orientation "right"))))
 
@@ -275,7 +275,7 @@
                              
                          (setf player (new (jaws.-sprite (create x 128
                                                                  y (- world.height 128)
-                                                                 image "daisy.png"
+                                                                 image "/img/daisy.png"
                                                                  anchor "center_bottom"))))
                          (setf player.can_fire "true")
                          (setf player.health 1000)
@@ -316,7 +316,7 @@
                                                              (- (@ (player.rect) right) 65)
                                                              (@ (player.rect) right))
                                                       :y (- player.y 40)
-                                                      :image "bullet.png")))
+                                                      :image "/img/bullet.png")))
                                 (setf shot.vx (if player.flipped
                                                   -10
                                                   10))
@@ -413,33 +413,31 @@
                                           null)))))
 
           (with-document-ready (lambda ()
-                                 (jaws.assets.add (array "droid_big.png"
-                                                         "the-hero-small.png"
-                                                         "/blocks/blocks1.png"
-                                                         "/blocks/pickups.png"
-                                                         "daisy.png"
-                                                         "/textures/dog_house.png"
-                                                         "cherries.png"
-                                                         "roo.png"
-                                                         "rat.png"
-                                                         "factory.png"
-
-                                                         "/textures/dirt.png"
-                                                         "/textures/bullet_1.png"
-                                                         "/textures/fence-bg.png"
-                                                         "/textures/trash_can.png"
-                                                         "/textures/coop_1.png"
-                                                         "/textures/flowerpot_1.png"
-                                                         "/textures/tree_1.png"
-                                                         "/textures/daisy_master_coffee.png"
-                                                         "/textures/flowerpot_2.png"
-                                                         "/textures/wing_pot_1.png"
-                                                         "/textures/grass_fg.png"
-                                                         "/textures/dog_house_broken.png"
-                                                         "/textures/sky_2.png"
-
-                                                         "bullet.png"
-                                                         "dog-anim.png"))
+                                 (jaws.assets.add (array "/img/droid_big.png"
+                                                         "/img/the-hero-small.png"
+                                                         "/img/blocks1.png"
+                                                         "/img/pickups.png"
+                                                         "/img/daisy.png"
+                                                         "/img/dog_house.png"
+                                                         "/img/cherries.png"
+                                                         "/img/roo.png"
+                                                         "/img/rat.png"
+                                                         "/img/factory.png"
+                                                         "/img/dirt.png"
+                                                         "/img/bullet_1.png"
+                                                         "/img/fence-bg.png"
+                                                         "/img/trash_can.png"
+                                                         "/img/coop_1.png"
+                                                         "/img/flowerpot_1.png"
+                                                         "/img/tree_1.png"
+                                                         "/img/daisy_master_coffee.png"
+                                                         "/img/flowerpot_2.png"
+                                                         "/img/wing_pot_1.png"
+                                                         "/img/grass_fg.png"
+                                                         "/img/dog_house_broken.png"
+                                                         "/img/sky_2.png"
+                                                         "/img/bullet.png"
+                                                         "/img/dog-anim.png"))
 
                                  (jaws.start iv))))))))
 

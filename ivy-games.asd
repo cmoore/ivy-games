@@ -7,9 +7,9 @@
   :license "Specify license here"
   :depends-on (#:hunchentoot
                #:parenscript
+               #:parenscript-utils
                #:cl-who
                #:css-lite
                #:cl-ivy)
   :components ((:file "package")
                (:file "ivy-games")))
-

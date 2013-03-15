@@ -66,7 +66,7 @@ function platform() {
                 }
             }
 
-            var anim = new jaws.Animation({sprite_sheet: "droid_11x15.png", frame_size: [11,15], frame_duration: 100})
+            var anim = new jaws.Animation({sprite_sheet: "/img/droid_11x15.png", frame_size: [11,15], frame_duration: 100})
 
             player.anim_default = anim.slice(0,5)
             player.anim_up = anim.slice(6,8)
@@ -129,6 +129,6 @@ function platform() {
 
 jaws.onload = function() {
     jaws.unpack()
-    jaws.assets.add(["droid_11x15.png","block.bmp"])
+    jaws.assets.add(["/img/droid_11x15.png","block.bmp"])
     jaws.start(platform)  // Our convenience function jaws.start() will load assets, call setup and loop update/draw in 60 FPS
 }

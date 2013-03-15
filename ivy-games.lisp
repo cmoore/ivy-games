@@ -1,4 +1,3 @@
-
 (in-package #:ivy-games)
 
 
@@ -215,32 +214,6 @@
                                    (iv.make_autonymous the-roo)
                                    (iv.make_shootable the-roo)
                                    (blocks.push the-roo)))
-                       player-move (lambda ()
-                                        ;(+= player.x player.vx)
-
-                                        ; check for collisions
-                                     (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
-                                         (setf player.vx 0))
-
-                                        ; Jumping
-                                     (defvar block (aref (tile_map.at-rect (player.rect)) 0))
-                                     (if block
-                                         (progn
-                                           (when (> player.vy 0)
-                                             (setf player.can_jump true)
-                                             (setf player.y (- (@ (block.rect) y) 1)))
-                                           (when (< player.vy 0)
-                                             (setf player.y (+ (@ (block.rect) bottom) player.height)))
-                                           (setf player.vy 0)))
-
-                                        ; Make sure they stay within view.
-                                     (when (and (> player.vx 0)
-                                                (iv.is_outside player))
-                                       (setf player.vx 0))
-
-                                     (+= player.x player.vx)
-                                     (+= player.y player.vy))
-
 
                        add-scenery (lambda ()
                                         ; draw the ground
@@ -312,8 +285,71 @@
                                (setf jaws.prevent-default-keys (array "up" "down" "left" "right" "space"))
 
                                null)
-                       update (lambda ()
 
+
+
+                       player-move (lambda ()
+                                     (+= player.x player.vx)
+                                     (if (> (@ (tile_map.at-rect (player.rect)) length) 0)
+                                         (-= player.x player.vx))
+                                     (setf player.vx 0)
+                                     (+= player.y player.vy)
+                                     (defvar block (aref (tile_map.at-rect (player.rect)) 0))
+                                     (if block
+                                         (progn
+                                           (when (> player.vy 0)
+                                             (setf player.can_jump true)
+                                             (setf player.y (- (@ (block.rect) y) 1)))
+                                           (when (< player.vy 0)
+                                             (setf player.y (+ (@ (block.rect) bottom) player.height)))
+                                           (setf player.vy 0))))
+
+
+
+
+                                     ;; (when (@ (tile_map.at-rect player.rect) length)
+                                     ;;   (progn
+                                     ;;     (console.log "collision")
+                                     ;;     (setf player.vx 0)))
+
+
+                                     ;; (when (< (iv.ground_level) player.y)
+                                     ;;   (setf player.y (iv.ground_level)))
+
+                                     ;; (defvar block (aref (tile_map.at-rect player.rect) 0))
+
+
+                                     ;; ;; (when (< player.y 0)
+                                     ;; ;;   (+= player.y player.vy)
+                                     ;; ;;   (-= player.vy 2))
+
+                                     ;; ;; (when (< player.vy 0)
+                                     ;; ;;   (setf player.y (+ (@ (block.rect) bottom) player.height)))
+
+                                     ;;    ; Jumping
+                                     ;; ;; (if block
+                                     ;; ;;     (progn
+                                     ;; ;;       (when (> player.vy 0)
+                                     ;; ;;         (console.log "jump")
+                                     ;; ;;         (setf player.can_jump true)
+                                     ;; ;;         (setf player.y (- (@ (block.rect) y) 1)))
+                                     ;; ;;       (when (< player.vy 0)
+                                     ;; ;;         (console.log "RESET")
+                                     ;; ;;         (setf player.y (+ (@ (block.rect) bottom) player.height)))
+                                     ;; ;;       (setf player.vy 0)))
+
+                                     ;;    ; Make sure they stay within view.
+                                     ;; (when (and (> player.vx 0)
+                                     ;;            (iv.is_outside player))
+                                     ;;   (setf player.vx 0))
+
+                                     ;; (+= player.x player.vx)
+                                     ;; (+= player.y player.vy)
+                                     ;; (setf player.vx 0)
+                                     ;; (setf player.vy 0)
+
+
+                       update (lambda ()
                                 (when (jaws.pressed "left")
                                   (unless player.flipped
                                     (player.flip))
@@ -336,7 +372,7 @@
                                 (+= player.vy 0.4)
                                 (iv.player-move)
 
-                                        ; move the other actors
+                                ; move the other actors
                                 (fmap (iv.all_autonymous)
                                       (lambda (x)
                                         (unless x.vx
@@ -346,17 +382,13 @@
                                           (if (> x.vx 0)
                                               (setf x.vx -.5)
                                               (setf x.vx .5)))
-
                                         (+= x.x x.vx)))
 
                                 (viewport.center-around player)
 
 
 
-                                        ;Factories?
-
-
-                                        ; Move the bullets
+                                ; Move the bullets
                                 (fmap (iv.all_bullets)
                                       (lambda (x)
                                         (+= x.x x.vx)
@@ -378,7 +410,7 @@
                                                     (console.log "collision!")
                                                     (iv.handle_collision bullet cbs)))))))
 
-                                        ; Finally, remove anything that has lost its life.
+                                ; Finally, remove anything that has lost its life.
                                 (fmap blocks.sprites
                                       (lambda (obj)
                                         (when (or (< obj.health 0)
